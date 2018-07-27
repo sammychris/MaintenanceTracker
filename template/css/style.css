@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Patua+One|Yesteryear');
+
+* {
+	box-sizing: border-box;
+}
+
+body{
+	text-align: center;
+}
+
+h1 {
+	font-family: 'Yesteryear', cursive;
+}
+
+h1, h2, h3 {
+	text-align: center;
+}
+
+label{
+	display:block;
+}
+
+main {
+	width: 80%; 
+	margin: 50px auto; 
+	background-color: rgba(33, 150, 243, 0.2); 
+	border-radius: 20px; 	
+	font-size:13px;
+	height: 600px;
+}
+
+form {
+	width: 500px;
+	border: 1px solid black;
+	margin: 70px auto;
+	padding: 1.4rem 0;
+	border-radius: 5px;
+}
+
+#request-form{
+	width: 95%;
+	margin-top:5px;
+}
+
+form input {
+	width: 90%;
+	margin-top: 5px;
+	border: 1px solid black;
+	padding: 0.8rem;
+	font-size: 1rem;
+}
+
+.button {
+	margin-top: 10px;
+}
+
+.button button {
+	border: 1px solid black;
+	width: 40%;
+	padding: 0.67rem;
+}
+
+form h3 {
+	font-weight: bold;
+}
+
+
+.user-page {
+  display: grid;
+  grid-template-columns: 20% auto;
+}
+.user-page .searchBar{float:right; margin:0 50px 5px;}
+.user-page .searchBar select{height:30px; width:120px;}
+.user-page .searchBar button{width:40px; height:30px; position:absolute; padding:0;}
+
+
+aside textarea{width: 90%;height: 200px; resize: none;}
+aside img{margin-top: 20px;}
+aside label{display: inline;}
+aside input{width:250px;}
+aside p #view-request{float:right; color:blue; margin-right:30px; padding:5px;}
+
+.user-table{
+	width: 100%;
+}
+table {
+    border-collapse: collapse;
+    margin-bottom:50px; 
+}
+
+th, tr, td{
+    text-align: left;
+    border-bottom: 1px solid blue;
+}
+
+footer{margin-bottom:10px;}
+
+.main {
+	margin-bottom: 20px;
+}
+
+.welcome-msg {
+	margin-top: 30px;
+}
+
+.sign-up-form {
+	border: 0;
+}
+
+p {
+	width: 70%;
+	margin: 0 auto;
+}
+
+aside p{
+	width:100%;
+}
+.notes {
+	margin-top: 4px;
+}
+
+#signUpBtn {
+	width: 30%;
+	margin-top: 1rem;
+}
