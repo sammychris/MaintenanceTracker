@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/sammychris/MaintenanceTracker#readme",
   "dependencies": {
+    "babel": "^6.23.0",
     "express": "^4.16.3"
   },
   "devDependencies": {
