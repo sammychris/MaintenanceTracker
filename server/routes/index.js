@@ -6,6 +6,6 @@ export default (app) => {
 	app.post('/auth/login', user.logIn);
 
 	app.get('/users/requests', request.allReq);
-	app.get('/users/requests/requestId', request.aReq);
+	app.get('/users/requests/:requestId', request.aReq);
 	app.post('/users/requests', request.create);
 }
