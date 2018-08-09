@@ -50,6 +50,7 @@ export default {
 	const { requestId } = req.params;
 	const findReq = request.db[requestId];
 	if(!findReq) return res.send({ error: "404 request id does not exists!"});
+	if(findReq.status !== "pending") return res.send({ error: "request must be pending before approval!"});
 	findReq.status = "approved";
 	res.send({ approved: findReq });
 	},
@@ -58,6 +59,7 @@ export default {
 	const { requestId } = req.params;
 	const findReq = request.db[requestId];
 	if(!findReq) return res.send({ error: "404 request id does not exists!"});
+	if(findReq.status !== "pending") return res.send({ error: "request must be pending before disapproved!"});
 	findReq.status = "disapproved";
 	res.send({ disapproved: findReq });
 	},
@@ -66,6 +68,7 @@ export default {
 	const { requestId } = req.params;
 	const findReq = request.db[requestId];
 	if(!findReq) return res.send({ error: "404 request id does not exists!"});
+	if(findReq.status !== "approved") return res.send({ error: "request must be approved before resolve!"});
 	findReq.status = "resolved";
 	res.send({ resolved: findReq });
 	}
