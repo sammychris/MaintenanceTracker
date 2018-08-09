@@ -2,7 +2,7 @@ import request from '../models/requestSchema';
 import user from '../models/userSchema';
 
 export default {
-    create(req, res){
+    create(req, res) {
         const { name, type, description } = req.body;
         const date = new Date();
         const currentDate = ( date.getDate() < 10 ) ? '0'+date.getDate(): date.getDate();
@@ -22,7 +22,7 @@ export default {
 
     },
 
-    allByUser(req, res){
+    allByUser(req, res) {
         const id = req.headers['id'];
         const userById = user.db[id];
         if( !userById ) return res.send({ error:'user does not exist!' });
@@ -30,18 +30,18 @@ export default {
         res.json({ requests: userById.request });
     },
 
-    allReq(req, res){
+    allReq(req, res) {
         res.json({ requests: request.db });
     },
 
-    aReq(req, res){
+    aReq(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
         if(!findReq) return res.send({ error: '404 request id does not exists!'});
         res.json({request: findReq});
     },
 
-    modify(req, res){
+    modify(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
         if(!findReq) return res.send({ error: '404 request id does not exists!'});
@@ -50,7 +50,7 @@ export default {
         res.send({ updated:findReq });
     },
 
-    approve(req, res){
+    approve(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
         if(!findReq) return res.send({ error: '404 request id does not exists!'});
@@ -59,7 +59,7 @@ export default {
         res.send({ approved: findReq });
     },
 
-    disapprove(req, res){
+    disapprove(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
         if(!findReq) return res.send({ error: '404 request id does not exists!'});
@@ -68,7 +68,7 @@ export default {
         res.send({ disapproved: findReq });
     },
 
-    resolve(req, res){
+    resolve(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
         if(!findReq) return res.send({ error: '404 request id does not exists!'});
