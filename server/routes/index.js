@@ -12,6 +12,6 @@ export default (app) => {
 
 	app.get('/requests/', request.all);
 	app.put('/requests/:requestId/approve', request.approve);
-	app.get('/requests/<requestId>/disapprove', request.disapprove);
-
+	app.put('/requests/:requestId/disapprove', request.disapprove);
+	app.put('/requests/:requestId/resolve', request.resolve);
 }
