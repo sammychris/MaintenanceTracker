@@ -5,29 +5,28 @@ export default {
     create(req, res) {
         const { name, type, description } = req.body;
         const date = new Date();
-        const currentDate = ( date.getDate() < 10 ) ? '0'+date.getDate(): date.getDate();
-        let fullDate = ` ${currentDate}/${date.getMonth()}/${date.getFullYear()} `;
+        const currentDate = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate();
+        const fullDate = ` ${currentDate}/${date.getMonth()}/${date.getFullYear()} `;
         const userReq = {
-            name: name,
+            name,
             date: fullDate,
-            type: type,
+            type,
             status: 'pending',
-            description:description
+            description,
         };
-        const curUser = user.db.find((v) => `${v.firstname} ${v.lastname}` === name.toLowerCase());
-        if(!curUser) return res.send({ error:'User does not exist' });
+        const curUser = user.db.find(v => `${v.firstname} ${v.lastname}` === name.toLowerCase());
+        if (!curUser) return res.send({ error: 'User does not exist' });
         request.db.push(userReq);
         curUser.request.push(userReq);
         return res.json(userReq);
-
     },
 
     allByUser(req, res) {
-        const id = req.headers['id'];
+        const { id } = req.headers;
         const userById = user.db[id];
-        if( !userById ) return res.send({ error:'user does not exist!' });
-        if( userById.request.length < 1 ) return res.send({ message:'This user has made no request yet!' });
-        res.json({ requests: userById.request });
+        if (!userById) return res.send({ error: 'user does not exist!' });
+        if (userById.request.length < 1) return res.send({ message: 'This user has made no request yet!' });
+        return res.json({ requests: userById.request });
     },
 
     allReq(req, res) {
@@ -37,43 +36,43 @@ export default {
     aReq(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
-        if(!findReq) return res.send({ error: '404 request id does not exists!'});
-        res.json({request: findReq});
+        if (!findReq) return res.send({ error: '404 request id does not exists!' });
+        return res.json({ request: findReq });
     },
 
     modify(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
-        if(!findReq) return res.send({ error: '404 request id does not exists!'});
+        if (!findReq) return res.send({ error: '404 request id does not exists!' });
         findReq.type = req.body.type;
         findReq.description = req.body.description;
-        res.send({ updated:findReq });
+        return res.send({ updated: findReq });
     },
 
     approve(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
-        if(!findReq) return res.send({ error: '404 request id does not exists!'});
-        if(findReq.status !== 'pending') return res.send({ error: 'request must be pending before approval!'});
+        if (!findReq) return res.send({ error: '404 request id does not exists!' });
+        if (findReq.status !== 'pending') return res.send({ error: 'request must be pending before approval!' });
         findReq.status = 'approved';
-        res.send({ approved: findReq });
+        return res.send({ approved: findReq });
     },
 
     disapprove(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
-        if(!findReq) return res.send({ error: '404 request id does not exists!'});
-        if(findReq.status !== 'pending') return res.send({ error: 'request must be pending before disapproved!'});
+        if (!findReq) return res.send({ error: '404 request id does not exists!' });
+        if (findReq.status !== 'pending') return res.send({ error: 'request must be pending before disapproved!' });
         findReq.status = 'disapproved';
-        res.send({ disapproved: findReq });
+        return res.send({ disapproved: findReq });
     },
 
     resolve(req, res) {
         const { requestId } = req.params;
         const findReq = request.db[requestId];
-        if(!findReq) return res.send({ error: '404 request id does not exists!'});
-        if(findReq.status !== 'approved') return res.send({ error: 'request must be approved before resolve!'});
+        if (!findReq) return res.send({ error: '404 request id does not exists!' });
+        if (findReq.status !== 'approved') return res.send({ error: 'request must be approved before resolve!' });
         findReq.status = 'resolved';
-        res.send({ resolved: findReq });
-    }
+        return res.send({ resolved: findReq });
+    },
 };

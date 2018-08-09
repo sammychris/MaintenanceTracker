@@ -1,24 +1,24 @@
 
 export default [
     {
-        firstname:'samuel',
+        firstname: 'samuel',
         lastname: 'christopher',
-        email   : 'ebusameric@gmail.com',
+        email: 'ebusameric@gmail.com',
         password: 'ebusam12',
-        role: ['admin']
+        role: ['admin'],
     },
     {
-        firstname:'john',
+        firstname: 'john',
         lastname: 'emeka',
-        email   : 'emaka@gmail.com',
+        email: 'emaka@gmail.com',
         password: 'emeka12345',
-        request:[]
+        request: [],
     },
     {
-        firstname:'samson',
+        firstname: 'samson',
         lastname: 'johnson',
-        email   : 'samson@gmail.com',
+        email: 'samson@gmail.com',
         password: 'johnson12345',
-        request: []
-    }
+        request: [],
+    },
 ];
