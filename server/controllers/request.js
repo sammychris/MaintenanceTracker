@@ -25,6 +25,10 @@ export default {
 		res.json({ requests: request.db });
 	},
 
+	all(req, res){
+		res.json({ requests: request.db });
+	},
+
 	aReq(req, res){
 		const { requestId } = req.params;
 		const findReq = request.db[requestId];
