@@ -5,6 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./server",
+    "lint:fix": "eslint ./server --fix",
     "start": "nodemon ./server/bin/www --exec babel-node -e js"
   },
   "repository": {
@@ -18,13 +20,16 @@
   },
   "homepage": "https://github.com/sammychris/MaintenanceTracker#readme",
   "dependencies": {
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "morgan": "^1.9.0",
     "express": "^4.16.3"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-0": "^6.24.1",
-    "morgan": "^1.9.0",
+    "eslint": "^5.3.0",
     "nodemon": "^1.18.3"
   }
 }
