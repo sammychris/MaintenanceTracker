@@ -20,10 +20,15 @@ export default {
 		res.json(userReq);
 
 	},
+
 	allReq(req, res){
 		res.json({ requests: request.db });
 	},
+
 	aReq(req, res){
-		res.json({})
+		const { requestId } = req.params;
+		const findReq = request.db[requestId];
+		if(!findReq) return res.send({ error: "404 request id does not exists!"});
+		res.json({request: findReq})
 	}
 }
