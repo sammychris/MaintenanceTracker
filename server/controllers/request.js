@@ -53,4 +53,12 @@ export default {
 	findReq.status = "approved";
 	res.send({ approved: findReq });
 	}
+
+	disapprove(req, res){
+	const { requestId } = req.params;
+	const findReq = request.db[requestId];
+	if(!findReq) return res.send({ error: "404 request id does not exists!"});
+	findReq.status = "disapproved";
+	res.send({ approved: findReq });
+	}
 }
