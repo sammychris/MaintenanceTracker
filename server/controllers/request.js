@@ -1,4 +1,5 @@
 import request from '../models/requestSchema';
+import user from '../models/userSchema';
 
 export default {
 	create(req, res){
@@ -12,11 +13,17 @@ export default {
 						type: type,
 						description:description
 				};
+		const curUser = user.db.find((v) => `${v.firstname} ${v.lastname}` === name.toLowerCase());
+		if(!curUser) return res.send('User does not exist');
 		request.db.push(userReq);
+		curUser.request.push(userReq);
 		res.json(userReq);
 
 	},
 	allReq(req, res){
-		res.json({ request: request.db });
+		res.json({ requests: request.db });
+	},
+	aReq(req, res){
+		res.json({})
 	}
 }
