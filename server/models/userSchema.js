@@ -4,7 +4,7 @@ import user from './db/user';
 
 
 export default {
-	db   : user
-}
+    db   : user
+};
 
 
