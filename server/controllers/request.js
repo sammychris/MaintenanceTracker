@@ -52,13 +52,21 @@ export default {
 	if(!findReq) return res.send({ error: "404 request id does not exists!"});
 	findReq.status = "approved";
 	res.send({ approved: findReq });
-	}
+	},
 
 	disapprove(req, res){
 	const { requestId } = req.params;
 	const findReq = request.db[requestId];
 	if(!findReq) return res.send({ error: "404 request id does not exists!"});
 	findReq.status = "disapproved";
-	res.send({ approved: findReq });
+	res.send({ disapproved: findReq });
+	},
+
+	resolve(req, res){
+	const { requestId } = req.params;
+	const findReq = request.db[requestId];
+	if(!findReq) return res.send({ error: "404 request id does not exists!"});
+	findReq.status = "resolved";
+	res.send({ resolved: findReq });
 	}
 }
