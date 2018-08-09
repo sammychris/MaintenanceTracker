@@ -18,7 +18,7 @@ export default {
         if(!curUser) return res.send({ error:'User does not exist' });
         request.db.push(userReq);
         curUser.request.push(userReq);
-        res.json(userReq);
+        return res.json(userReq);
 
     },
 
