@@ -22,11 +22,15 @@ export default {
 
 	},
 
-	allReq(req, res){
-		res.json({ requests: request.db });
+	allByUser(req, res){
+		const id = req.headers['id'];
+		const userById = user.db[id];
+		if( !userById ) return res.send({ error:"user does not exist!" });
+		if( userById.request.length < 1 ) return res.send({ message:"This user has made no request yet!" });
+		res.json({ requests: userById.request });
 	},
 
-	all(req, res){
+	allReq(req, res){
 		res.json({ requests: request.db });
 	},
 
