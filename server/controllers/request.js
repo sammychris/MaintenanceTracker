@@ -11,6 +11,7 @@ export default {
 						name: name,
 						date: fullDate,
 						type: type,
+						status: "pending",
 						description:description
 				};
 		const curUser = user.db.find((v) => `${v.firstname} ${v.lastname}` === name.toLowerCase());
@@ -43,5 +44,13 @@ export default {
 		findReq.type = req.body.type;
 		findReq.description = req.body.description;
 		res.send({ updated:findReq });
+	},
+
+	approve(req, res){
+	const { requestId } = req.params;
+	const findReq = request.db[requestId];
+	if(!findReq) return res.send({ error: "404 request id does not exists!"});
+	findReq.status = "approved";
+	res.send({ approved: findReq });
 	}
 }
