@@ -11,6 +11,6 @@ export default (app) => {
 	app.put('/users/requests/:requestId', request.modify);
 
 	app.get('/requests/', request.all);
-	//app.get('/requests/<requestId>/approve')
+	app.get('/requests/<requestId>/approve', request.approve);
 
 }
