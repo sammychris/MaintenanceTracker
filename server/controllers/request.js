@@ -14,7 +14,7 @@ export default {
 						description:description
 				};
 		const curUser = user.db.find((v) => `${v.firstname} ${v.lastname}` === name.toLowerCase());
-		if(!curUser) return res.send('User does not exist');
+		if(!curUser) return res.send({ error:'User does not exist' });
 		request.db.push(userReq);
 		curUser.request.push(userReq);
 		res.json(userReq);
@@ -30,5 +30,14 @@ export default {
 		const findReq = request.db[requestId];
 		if(!findReq) return res.send({ error: "404 request id does not exists!"});
 		res.json({request: findReq})
+	},
+
+	modify(req, res){
+		const { requestId } = req.params;
+		const findReq = request.db[requestId];
+		if(!findReq) return res.send({ error: "404 request id does not exists!"});
+		findReq.type = req.body.type;
+		findReq.description = req.body.description;
+		res.send({ updated:findReq });
 	}
 }
