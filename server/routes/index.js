@@ -8,6 +8,9 @@ export default (app) => {
 	app.get('/users/requests', request.allReq);
 	app.get('/users/requests/:requestId', request.aReq);
 	app.post('/users/requests', request.create);
-
 	app.put('/users/requests/:requestId', request.modify);
+
+	app.get('/requests/', request.all);
+	//app.get('/requests/<requestId>/approve')
+
 }
