@@ -12,5 +12,4 @@ app.use(express.urlencoded({ extended: true }));
 
 route(app);
 
-
 export default app;
