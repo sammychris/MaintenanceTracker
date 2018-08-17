@@ -25,12 +25,15 @@
   },
   "homepage": "https://github.com/sammychris/MaintenanceTracker#readme",
   "dependencies": {
+    "cors": "^2.8.4",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.3.0",
     "morgan": "^1.9.0",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.3",
+    "socket.io": "^2.1.1",
+    "ws": "^6.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
