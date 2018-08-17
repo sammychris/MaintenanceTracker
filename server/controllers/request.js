@@ -3,22 +3,23 @@ import user from '../models/userSchema';
 
 export default {
     create(req, res) {
-        const { name, type, description } = req.body;
+        const { type, description } = req.body;
         const date = new Date();
         const currentDate = (date.getDate() < 10) ? `0${date.getDate()}` : date.getDate();
         const fullDate = ` ${currentDate}/${date.getMonth()}/${date.getFullYear()} `;
         const userReq = {
-            name,
             date: fullDate,
             type,
             status: 'pending',
             description,
         };
-        const curUser = user.db.find(v => `${v.firstname} ${v.lastname}` === name.toLowerCase());
-        if (!curUser) return res.send({ error: 'User does not exist' });
+        const { id } = req.headers;
+        const userById = user.db[id];
+        if (!userById) return res.send({ error: 'User does not exist' });
+        userReq.name = `${userById.firstname} ${userById.lastname}`;
         request.db.push(userReq);
-        curUser.request.push(userReq);
-        return res.json(userReq);
+        userById.request.push(userReq);
+        return res.json({ message: 'Your request has been sent' });
     },
 
     allByUser(req, res) {
