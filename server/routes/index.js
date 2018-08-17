@@ -10,7 +10,7 @@ export default (app) => {
     app.post('/users/requests', request.create);
     app.put('/users/requests/:requestId', request.modify);
 
-    app.get('/requests/', request.allReq);
+    app.get('/requests', request.allReq);
     app.put('/requests/:requestId/approve', request.approve);
     app.put('/requests/:requestId/disapprove', request.disapprove);
     app.put('/requests/:requestId/resolve', request.resolve);
