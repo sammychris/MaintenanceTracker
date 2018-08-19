@@ -1,16 +1,16 @@
 export default [
     {
-        name: 'Mark johnson',
+        name: 'Mark Johnson',
         date: '23/2/2018',
         type: 'Repair',
-        status: 'Maintenance',
+        status: 'Pending',
         description: 'I want to run some maintenance no my car.',
     },
     {
-        name: 'James johnson',
+        name: 'James Johnson',
         date: '03/4/2018',
-        type: 'Repair',
-        status: 'Maintenance',
+        type: 'Maintenance',
+        status: 'Accepted',
         description: 'I want to run some maintenance no my car.',
     },
     {
