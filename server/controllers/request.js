@@ -1,6 +1,7 @@
 import request from '../models/requestSchema';
 import user from '../models/userSchema';
 
+let updated;
 export default {
     create(req, res) {
         const { type, description } = req.body;
@@ -42,12 +43,15 @@ export default {
     },
 
     modify(req, res) {
+        if (updated) return res.send({ message: 'Oops! you have to wait for five minute before you can modify' });
         const { requestId } = req.params;
         const findReq = request.db[requestId];
         if (!findReq) return res.send({ error: '404 request id does not exists!' });
         findReq.type = req.body.type;
         findReq.description = req.body.description;
-        return res.send({ updated: findReq });
+        setTimeout(() => { updated = false; }, 10000);
+        updated = true;
+        return res.send({ message: 'Updated successfully!', updated });
     },
 
     approve(req, res) {
