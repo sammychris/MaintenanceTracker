@@ -9,7 +9,7 @@ export default {
         const token = headers.authorization || headers['x-access-token'] || req.body.token;
         if (token) {
             jwt.verify(token, process.env.USER_KEY, (err) => {
-                if (err) return res.status(403).json('Token Is Not Valid');
+                if (err) return res.status(403).json({ message: 'Token Is Not Valid' });
                 return next();
             });
         } else {
@@ -27,7 +27,7 @@ export default {
                 return next();
             });
         } else {
-            res.status(401).json('Token not provided');
+            res.status(401).json({ message: 'Token not provided' });
         }
     },
 
