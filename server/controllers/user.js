@@ -18,7 +18,7 @@ export default {
         jwt.sign(info, process.env.USER_KEY, { expiresIn: '1h' }, (err, token) => {
             if (err) return console.log(err);
             user.db.push(info);
-            return res.status(201).json({ user: 'successfully registered!', token });
+            return res.status(201).json({ message: 'successfully registered!', token });
         });
     },
 
@@ -28,6 +28,10 @@ export default {
         const findUser = user.db.find(v => v.email === email.toLowerCase());
         if (!findUser) return res.send('user does not exist!');
         if (findUser.password !== password) return res.send('wrong password');
-        return res.send('user logged in successful!');
+        jwt.sign({ findUser }, adminOrUser, { expiresIn: '1h' }, (err, token) => {
+            if (err) return console.log(err);
+            return res.status(202).send({ message: 'loggedin successfully', token });
+        });
+        return console.log('error');
     },
 };
