@@ -1,26 +1,54 @@
 const textField = document.getElementsByTagName('textarea')[0];
+const logOut = document.getElementById('log-out');
+const btnInput = document.getElementsByTagName('button');
 
-const btnInput = document.getElementsByTagName('input');
-const data = {};
+const user = localStorage.getItem('user');
+const request = {};
 
+if(localStorage.length < 1) {
+	alert('sorry this user needs to login!');
+	location.assign("./../index.html");
+}
+
+// admin must loggout before logging in again.
+if(localStorage.getItem('adminToken')){
+	location.assign("../contents/admin.html")
+}
+
+// setting the repair and maintenance button along side the request...
 for(let i = 0; i < btnInput.length; i++){
-	btnInput[i].onclick = function(){
+	btnInput[i].onclick = function(e){
+		e.preventDefault();
 		let text = textField.value.trim();
 		if(text.length < 10) return alert('Should not be less the 10 character');
-		data.type = this.value;
-		data.description = text;
+		request.type = this.value;
+		request.description = text;
 
-		postData(`http://localhost:8000/users/requests`, data )
-	  		.then(data => console.log(data)) // JSON from `response.json()` call
+		postData(`/users/requests`, request )
+	  		.then(result => {
+	  			console.log(result);
+	  			if(result.error){
+	  				alert(result.error);
+	  				localStorage.clear();
+	  				return location.assign("./../index.html");
+	  			}
+	  			alert(result.message);
+	  		})
 	  		.catch(error => console.error(error));
+			textField.value = '';
 
-		textField.value = '';
 	}
 }
 
 
+// logging out the user
+logOut.onclick = function(){
+	 if (confirm('Logout?')){
+		localStorage.clear();
+	 }
+}
 
-function postData(url = ``, data) {
+function postData(url, data) {
 	// Default options are marked with *
 	return fetch(url, {
 	    method: "POST", // *GET, POST, PUT, DELETE, etc.
@@ -29,7 +57,8 @@ function postData(url = ``, data) {
 	    credentials: "same-origin", // include, same-origin, *omit
 	    headers: {
 	        "Content-Type": "application/json; charset=utf-8",
-	        "id":1
+	        "id": localStorage.getItem('id'),
+	        "x-access-token": localStorage.getItem('userToken'),
 	        // "Content-Type": "application/x-www-form-urlencoded",
 	    },
         redirect: "follow", // manual, *follow, error
