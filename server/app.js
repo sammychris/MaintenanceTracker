@@ -11,9 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(`${__dirname}/../UI`));
+app.use('/admin', express.static(`${__dirname}/../UI/admin`));
+
 app.use(cors());
 
 route(app);
 
-app.get('/*', (req, res) => res.send('welcome'));
+app.get('/*', (req, res) => res.send('404 page not found!'));
 export default app;
