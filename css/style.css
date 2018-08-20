@@ -19,30 +19,37 @@ h1, h2, h3 {
 label{
 	display:block;
 }
+/* rgba(33, 150, 243, 0.2)*/
 
 main {
 	width: 80%; 
 	margin: 50px auto; 
-	background-color: rgba(33, 150, 243, 0.2); 
+	background-color: #1CE0E2FF; 
 	border-radius: 20px; 	
 	font-size:13px;
-	height: 600px;
+	padding: 10px;
+    min-height: 600px;
 }
 
-form {
-	width: 500px;
+.signupform {
+	max-width: 500px;
 	border: 1px solid black;
-	margin: 70px auto;
+	margin: 30px auto;
 	padding: 1.4rem 0;
 	border-radius: 5px;
 }
 
 #request-form{
-	width: 95%;
+	width: 90%;
 	margin-top:5px;
+	border:0;
 }
 
-form input {
+#request-form textarea {
+	border: 1px solid black;
+}
+
+.inputClass {
 	width: 90%;
 	margin-top: 5px;
 	border: 1px solid black;
@@ -54,8 +61,12 @@ form input {
 	margin-top: 10px;
 }
 
+button {
+   border: 1px solid black;
+   cursor: pointer;
+}
+
 .button button {
-	border: 1px solid black;
 	width: 40%;
 	padding: 0.67rem;
 }
@@ -65,13 +76,13 @@ form h3 {
 }
 
 .grid-item{
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .user-page {
   display: grid;
-  grid-template-columns: 20% auto;
+  grid-template-columns: 35% auto;
 }
 .user-page .searchBar{float:right; margin:0 50px 5px;}
 .user-page .searchBar select{height:30px; width:120px;}
@@ -81,7 +92,6 @@ form h3 {
 aside textarea{width: 90%;height: 200px; resize: none;}
 aside img{margin-top: 20px;}
 aside label{display: inline;}
-aside input{width:250px;}
 aside p #view-request{float:right; color:blue; margin-right:30px; padding:5px;}
 
 .user-table{
@@ -99,16 +109,8 @@ th, tr, td{
 
 footer{margin-bottom:10px;}
 
-.main {
-	margin-bottom: 20px;
-}
-
 .welcome-msg {
 	margin-top: 30px;
-}
-
-.sign-up-form {
-	border: 0;
 }
 
 p {
@@ -122,8 +124,6 @@ aside p{
 .notes {
 	margin-top: 4px;
 }
-
-#signUpBtn {
-	width: 30%;
-	margin-top: 1rem;
+input[type=radio]{
+	margin: 20px 30px 20px 10px;
 }
