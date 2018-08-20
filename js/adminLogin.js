@@ -19,7 +19,7 @@ login.onsubmit = function(e){
 	    .then(result => {
 	  		console.log(result);
 	  		if(result.error) return alert(result.error);
-			if(result.user.role){
+			if(result.user.role) {
 				alert(result.message);
 				localStorage.setItem('adminToken', result.token);
 				localStorage.setItem('id', result.id);
