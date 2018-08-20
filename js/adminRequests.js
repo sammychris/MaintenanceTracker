@@ -5,10 +5,23 @@ if(localStorage.getItem('userToken')){
 	location.assign("./contents/user.html")
 }
 
-getAllRequest('/requests');
 
-function getAllRequest(url){
-	fetch(url).then(response => {
+
+getAllRequest('/requests', {
+	method: 'GET',
+    headers: {
+    	"id": localStorage.getItem('id'),
+		"x-access-token": localStorage.getItem('adminToken'),
+			},
+    mode: 'cors',
+    cache: 'default'
+});
+
+
+
+
+function getAllRequest(url, request){
+	fetch(url, request).then(response => {
 		response.json().then(result => {
 			const data = result.requests;
 			console.log(data);
