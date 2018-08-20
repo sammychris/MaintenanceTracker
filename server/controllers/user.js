@@ -15,7 +15,8 @@ export default {
             password,
             request: [],
         };
-        jwt.sign(info, process.env.USER_KEY, { expiresIn: '1h' }, (err, token) => {
+        const userSecret = process.env.USER_KEY;
+        jwt.sign(info, userSecret, { expiresIn: '1h' }, (err, token) => {
             if (err) return console.log(err);
             user.db.push(info);
             return res.status(201).json({ message: 'successfully registered!', token });
@@ -23,15 +24,25 @@ export default {
     },
 
     logIn(req, res) {
-        const adminOrUser = (req.body.admin) ? process.env.ADMIN_KEY : process.env.USER_KEY;
-        const { email, password } = req.body;
-        const findUser = user.db.find(v => v.email === email.toLowerCase());
-        if (!findUser) return res.send('user does not exist!');
-        if (findUser.password !== password) return res.send('wrong password');
-        jwt.sign({ findUser }, adminOrUser, { expiresIn: '1h' }, (err, token) => {
-            if (err) return console.log(err);
-            return res.status(202).send({ message: 'loggedin successfully', token });
+        let idByIndex;
+        const adminSecret = process.env.ADMIN_KEY;
+        const userSecret = process.env.USER_KEY;
+        const { email, password, admin } = req.body;
+        const findUser = user.db.find((e, i) => {
+            idByIndex = i;
+            return e.email === email.toLowerCase();
         });
-        return console.log('error');
+        if (!findUser) return res.send({ error: 'user does not exist!' });
+        if (findUser.password !== password) return res.send({ error: 'wrong password' });
+        const secretKey = (admin && findUser.role) ? adminSecret : userSecret;
+        jwt.sign(findUser, secretKey, { expiresIn: '1h' }, (err, token) => {
+            if (err) return console.log(err);
+            return res.status(202).send(
+                {
+                    message: 'loggedin successfully', token, id: idByIndex, user: findUser,
+                },
+            );
+        });
+        return console.log(idByIndex);
     },
 };
