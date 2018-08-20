@@ -19,8 +19,8 @@ login.onsubmit = function(e){
 	    .then(result => {
 	  		console.log(result);
 	  		if(result.error) return alert(result.error);
+	  		if(result.user.role) return alert('Admin is not allowed!');
 			alert(result.message);
-			console.log(result.token)
 			localStorage.setItem('userToken', result.token);
 			localStorage.setItem('id', result.id);
 			localStorage.setItem('user', JSON.stringify(result.user));
