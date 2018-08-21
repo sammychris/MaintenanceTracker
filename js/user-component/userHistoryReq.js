@@ -3,12 +3,12 @@ const display = document.getElementsByTagName('tbody')[0];
 if(localStorage.length < 1) {
 	// user most login before seen any page
 	alert('sorry this user needs to login!');
-	location.assign("./../index.html");
+	location.assign(location.origin);
 }
 
 // admin must loggout before logging in again.
 if(localStorage.getItem('adminToken')){
-	location.assign("../contents/admin.html")
+	location.assign("../admin/admin-requests.html")
 }
 
 function RequestTag(date,name,type,status){
@@ -19,7 +19,7 @@ function RequestTag(date,name,type,status){
 	const tdAncore = crTag(tag,'td');
 
 	const a = crTag(tdAncore, 'a');
-	a.href = 'modify.html';
+	a.href = 'modify-request.html';
 
 	crTag(a,'button').innerHTML = 'View';
 	const statusTag = crTag(tag,'td');

@@ -7,12 +7,12 @@ const request = {};
 
 if(localStorage.length < 1) {
 	alert('sorry this user needs to login!');
-	location.assign("./../index.html");
+	location.assign(location.origin);
 }
 
 // admin must loggout before logging in again.
 if(localStorage.getItem('adminToken')){
-	location.assign("../contents/admin.html")
+	location.assign("../admin/admin-requests")
 }
 
 // setting the repair and maintenance button along side the request...
@@ -30,7 +30,7 @@ for(let i = 0; i < btnInput.length; i++){
 	  			if(result.error){
 	  				alert(result.error);
 	  				localStorage.clear();
-	  				return location.assign("./../index.html");
+	  				return location.assign("./../");
 	  			}
 	  			alert(result.message);
 	  		})

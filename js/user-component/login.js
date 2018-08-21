@@ -1,33 +1,30 @@
-const email = document.getElementById('admin-name');
-const password = document.getElementById('adminpwd');
+const email = document.getElementById('user-name');
+const password = document.getElementById('userpwd');
 const login = document.getElementsByTagName('form')[0];
 
-// admin must loggout before logging in again.
-if(localStorage.getItem('adminToken')){
-	location.assign("../contents/admin.html")
-}
-// if it eventually falls in this page? go back to user.
+// user must loggout before logging in again.
 if(localStorage.getItem('userToken')){
-	location.assign("./contents/user.html")
+	location.assign("./contents/users");
 }
+// if it eventually falls in this page? go back to adminuser.
+if(localStorage.getItem('adminToken')){
+	location.assign("./admin/admin-dashboard");
+} 
 
 
 login.onsubmit = function(e){
-	const admin = { email: email.value, password: password.value, admin: true };
+	const user = { email: email.value, password: password.value };
 
-	postData('/auth/login', admin )
+	postData('/auth/login', user )
 	    .then(result => {
 	  		console.log(result);
 	  		if(result.error) return alert(result.error);
-			if(result.user.role) {
-				alert(result.message);
-				localStorage.setItem('adminToken', result.token);
-				localStorage.setItem('id', result.id);
-				localStorage.setItem('admin', JSON.stringify(result.user));
-				location.assign("../contents/admin.html");
-			}else {
-				alert('This user is not an admin');
-			}
+	  		if(result.user.role) return alert('Admin is not allowed!');
+			alert(result.message);
+			localStorage.setItem('userToken', result.token);
+			localStorage.setItem('id', result.id);
+			localStorage.setItem('user', JSON.stringify(result.user));
+			location.assign("./contents/users.html")
 	  	})
 		.catch(error => console.error(error));
 }

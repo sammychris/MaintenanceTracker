@@ -1,30 +1,33 @@
-const email = document.getElementById('user-name');
-const password = document.getElementById('userpwd');
+const email = document.getElementById('admin-name');
+const password = document.getElementById('adminpwd');
 const login = document.getElementsByTagName('form')[0];
 
-// user must loggout before logging in again.
-if(localStorage.getItem('userToken')){
-	location.assign("./contents/user.html")
-}
-// if it eventually falls in this page? go back to adminuser.
+// admin must loggout before logging in again.
 if(localStorage.getItem('adminToken')){
-	location.assign("./contents/admin.html")
-} 
+	location.assign("./admin-dashboard.html")
+}
+// if it eventually falls in this page? go back to user.
+if(localStorage.getItem('userToken')){
+	location.assign("../contents/users.html")
+}
 
 
 login.onsubmit = function(e){
-	const user = { email: email.value, password: password.value };
+	const admin = { email: email.value, password: password.value, admin: true };
 
-	postData('/auth/login', user )
+	postData('/auth/login', admin )
 	    .then(result => {
 	  		console.log(result);
 	  		if(result.error) return alert(result.error);
-	  		if(result.user.role) return alert('Admin is not allowed!');
-			alert(result.message);
-			localStorage.setItem('userToken', result.token);
-			localStorage.setItem('id', result.id);
-			localStorage.setItem('user', JSON.stringify(result.user));
-			location.assign("./contents/user.html")
+			if(result.user.role) {
+				alert(result.message);
+				localStorage.setItem('adminToken', result.token);
+				localStorage.setItem('id', result.id);
+				localStorage.setItem('admin', JSON.stringify(result.user));
+				location.assign("./admin-dashboard.html");
+			}else {
+				alert('This user is not an admin');
+			}
 	  	})
 		.catch(error => console.error(error));
 }

@@ -13,12 +13,12 @@ let update = false;
 if(localStorage.length < 1) {
 	// user most login before seen any page
 	alert('sorry this user needs to login!');
-	location.assign("./../index.html");
+	location.assign(location.origin);
 }
 
 // admin must loggout before logging in again.
 if(localStorage.getItem('adminToken')){
-	location.assign("../contents/admin.html")
+	location.assign('../admin/admin-requests')
 }
 
 

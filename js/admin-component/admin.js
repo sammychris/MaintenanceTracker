@@ -2,7 +2,7 @@ const logOut = document.getElementById('log-out');
 
 // if it eventually falls in this page? go back to user.
 if(localStorage.getItem('userToken')){
-	location.assign("./contents/user.html")
+	location.assign("../../contents/users")
 }
 
 

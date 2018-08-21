@@ -2,7 +2,7 @@ const display = document.getElementsByTagName('tbody')[0];
 
 // if it eventually falls in this page? go back to user.
 if(localStorage.getItem('userToken')){
-	location.assign("./contents/user.html")
+	location.assign("../contents/users.html")
 }
 
 
