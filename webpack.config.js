@@ -6,7 +6,7 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 const outputDirectory = "dist";
 
 
-function htmlFile( name, sourceName = './UI/index.html' ) {
+function htmlFile( name, sourceName ) {
 	console.log(sourceName);
 	return new HtmlWebpackPlugin({ filename : name, template: sourceName});
 }
@@ -15,7 +15,7 @@ function htmlFile( name, sourceName = './UI/index.html' ) {
 //htmlFile({filename: "contents/users.html", template: "./UI/contents/users.html" });
 
 module.exports = {
-  entry: "./UI/js/app.js",
+  entry: "./client/app.js",
   output: {
     path: path.join(__dirname, outputDirectory),
     filename: "bundle.js"
@@ -48,13 +48,16 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin([outputDirectory]),
-    htmlFile('index'),
-    htmlFile('contents/user','./UI/contents/users.html'),
-    htmlFile('contents/user-requests','./UI/contents/users.html'),
-    htmlFile('contents/sign-up','./UI/contents/users.html'),
-    htmlFile('contents/modify-request','./UI/contents/users.html'),
-    htmlFile('admin/index','./UI/admin/index.html'),
-    htmlFile('admin/admin-requests','./UI/contents/users.html'),
-    htmlFile('admin/admin-dashboard','./UI/contents/users.html')
+    // User
+    new HtmlWebpackPlugin({template: './UI/index.html'}),
+    htmlFile('contents/modify-request.html', './UI/contents/modify-request.html'),
+    htmlFile('contents/sign-up.html', './UI/contents/sign-up.html'),
+    htmlFile('contents/users-requests.html', './UI/contents/users-requests.html'),
+    htmlFile('contents/users.html', './UI/contents/users.html'),
+    // Admin
+    htmlFile('admin/admin-dashboard.html', './UI/admin/admin-dashboard.html'),
+    htmlFile('admin/admin-requests.html', './UI/admin/admin-requests.html'),
+    htmlFile('admin/index.html', './UI/admin/index.html')
+
   ]
 };
