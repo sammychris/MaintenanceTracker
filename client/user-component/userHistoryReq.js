@@ -1,3 +1,7 @@
+import '../stylesheet/style.css';
+import '../stylesheet/w3.css';
+import '../fonts';
+
 const display = document.getElementsByTagName('tbody')[0];
 
 if (localStorage.length < 1) {
