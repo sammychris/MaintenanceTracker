@@ -1,3 +1,7 @@
+import '../stylesheet/style.css';
+import '../stylesheet/w3.css';
+import '../fonts';
+
 const email = document.getElementById('admin-name');
 const password = document.getElementById('adminpwd');
 const login = document.getElementsByTagName('form')[0];
