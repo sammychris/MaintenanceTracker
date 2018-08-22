@@ -1,5 +1,6 @@
 import '../stylesheet/style.css';
 import '../stylesheet/w3.css';
+import '../fonts';
 
 const email = document.getElementById('user-name');
 const password = document.getElementById('userpwd');
