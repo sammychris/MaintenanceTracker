@@ -1,3 +1,7 @@
+import '../stylesheet/style.css';
+import '../stylesheet/w3.css';
+import '../fonts';
+
 const userName = document.getElementById('username');
 const dateCreated = document.getElementById('date');
 const requestType = document.getElementsByName('typeOfRequest');
