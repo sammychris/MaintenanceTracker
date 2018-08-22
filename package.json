@@ -10,7 +10,9 @@
     "build": "rm -rf build && cross-env NODE_ENV=production babel server/ -d build --copy-files",
     "lint": "eslint ./",
     "lint:fix": "eslint ./ --fix",
-    "pack": "webpack --config webpack.config.js"
+    "pack": "webpack --config webpack.config.js",
+    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "dev": "concurrently \"npm run start:dev\" \"npm run client\""
   },
   "repository": {
     "type": "git",
