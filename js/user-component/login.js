@@ -1,3 +1,4 @@
+import '../../css/style.css';
 const email = document.getElementById('user-name');
 const password = document.getElementById('userpwd');
 const login = document.getElementsByTagName('form')[0];
