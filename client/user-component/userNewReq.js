@@ -1,3 +1,7 @@
+import '../stylesheet/style.css';
+import '../stylesheet/w3.css';
+import '../fonts';
+
 const textField = document.getElementsByTagName('textarea')[0];
 const logOut = document.getElementById('log-out');
 const btnInput = document.getElementsByTagName('button');
