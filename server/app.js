@@ -11,8 +11,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '../UI')));
-app.use('/admin', express.static(path.join(__dirname, '../UI/admin')));
+app.use(express.static(path.join(__dirname, '../dist')));
+app.use('/admin', express.static(path.join(__dirname, '../dist/admin')));
 
 app.use(cors());
 
