@@ -10,19 +10,19 @@
   <main>
   	   <section class="main">
   	   	<h1>Maintenance Tracker</h1>
-			<form role="role" id="form1" class="signupform">
+			<form role="role" id="form1" class="signupform" action="./contents/users.html">
 				<h3>Login into your account</h3>
 				<p>Welcome back!</p>
 				<dialog id="favDialog"><p>Greetings, one and all!</p></dialog>
 				<div>
 					<label for="user-name">
-						<input type="email" placeholder="Username or Email" class="inputClass" id="user-name" required>
+						<input type="email" placeholder="Username or Email" class="inputClass" id="user-name" required minlength="3">
 					</label>
 				</div>
 
 				<div>
 					<label for="userpwd">
-						<input type="password" placeholder="password" class="inputClass" id="userpwd" required minlength="2">
+						<input type="password" placeholder="password" class="inputClass" id="userpwd" required minlength="8">
 					</label>
 				</div>
 
@@ -41,5 +41,10 @@
   	   </section>
   	</main>
   	<script page="user-login"></script>
+  	<script>
+		document.querySelector('button').onclick = function(){
+			alert('LoggedIn successful');
+		}
+	</script>
 </body>
 </html>
