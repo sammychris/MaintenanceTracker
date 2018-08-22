@@ -1,3 +1,7 @@
+import '../stylesheet/style.css';
+import '../stylesheet/w3.css';
+import '../fonts';
+
 const display = document.getElementsByTagName('tbody')[0];
 
 // if it eventually falls in this page? go back to user.
