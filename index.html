@@ -10,7 +10,7 @@
   <main>
   	   <section class="main">
   	   	<h1>Maintenance Tracker</h1>
-			<form role="role" id="form1" action="./contents/users.html >
+			<form role="role" id="form1" class="signupform" action="contents/users.html">
 				<h3>Login into your account</h3>
 				<p>Welcome back!</p>
 				<dialog id="favDialog"><p>Greetings, one and all!</p></dialog>
@@ -42,7 +42,7 @@
   	</main>
   	<script page="user-login"></script>
   	<script>
-		document.querySelector('form').onsubmit = function(){
+		document.querySelector('button').onclick = function(){
 			alert('LoggedIn successful');
 		}
 	</script>
