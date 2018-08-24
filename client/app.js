@@ -1,3 +1,7 @@
+import './stylesheet/style.css';
+import './stylesheet/w3.css';
+import './fonts';
+
 const scriptTag = document.querySelector('script');
 const currentPage = scriptTag.getAttribute('page');
 if (!currentPage) throw Error('No entry module specified!');
