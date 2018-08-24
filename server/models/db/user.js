@@ -10,8 +10,8 @@ export default [
     {
         firstname: 'Emeka',
         lastname: 'Emmanuel',
-        email: 'emaka@gmail.com',
-        password: '11111',
+        email: 'emeka@gmail.com',
+        password: 'ebusam12',
         request: [
             {
                 name: 'Emeka Emmanuel',
@@ -33,7 +33,7 @@ export default [
         firstname: 'Patric',
         lastname: 'Usman',
         email: 'patric@gmail.com',
-        password: '11111',
+        password: 'ebusam12',
         request: [
             {
                 name: 'Patric Usman',
