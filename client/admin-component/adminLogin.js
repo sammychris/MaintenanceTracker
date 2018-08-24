@@ -1,14 +1,10 @@
-import '../stylesheet/style.css';
-import '../stylesheet/w3.css';
-import '../fonts';
-
 const email = document.getElementById('admin-name');
 const password = document.getElementById('adminpwd');
 const login = document.getElementsByTagName('form')[0];
 
 // admin must loggout before logging in again.
 if (localStorage.getItem('adminToken')) {
-    location.assign('./admin-dashboard.html');
+    location.assign('./dashboard.html');
 }
 // if it eventually falls in this page? go back to user.
 if (localStorage.getItem('userToken')) {
@@ -32,8 +28,9 @@ const postData = (url, data) => fetch(url, { // Default options are marked with 
     .then(response => response.json()); // parses response to JSON
 
 
-login.onsubmit = () => {
+login.onsubmit = (e) => {
     const admin = { email: email.value, password: password.value, admin: true };
+    e.preventDefault();
 
     return postData('/auth/login', admin)
         .then((result) => {
@@ -44,7 +41,7 @@ login.onsubmit = () => {
                 localStorage.setItem('adminToken', result.token);
                 localStorage.setItem('id', result.id);
                 localStorage.setItem('admin', JSON.stringify(result.user));
-                return location.assign('./admin-dashboard.html');
+                return location.assign('./dashboard.html');
             }
             return alert('This user is not an admin');
         })
