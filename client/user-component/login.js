@@ -1,7 +1,3 @@
-import '../stylesheet/style.css';
-import '../stylesheet/w3.css';
-import '../fonts';
-
 const email = document.getElementById('user-name');
 const password = document.getElementById('userpwd');
 const login = document.getElementsByTagName('form')[0];
@@ -12,7 +8,7 @@ if (localStorage.getItem('userToken')) {
 }
 // if it eventually falls in this page? go back to adminuser.
 if (localStorage.getItem('adminToken')) {
-    location.assign('./admin/admin-dashboard');
+    location.assign('./admin/dashboard.html');
 }
 
 
@@ -32,7 +28,8 @@ const postData = (url, data) => fetch(url, { // Default options are marked with 
     .then(response => response.json()); // parses response to JSON
 
 
-login.onsubmit = () => {
+login.onsubmit = (e) => {
+    e.preventDefault();
     const user = { email: email.value, password: password.value };
 
     postData('/auth/login', user)
