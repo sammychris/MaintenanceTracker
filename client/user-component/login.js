@@ -4,7 +4,7 @@ const login = document.getElementsByTagName('form')[0];
 
 // user must loggout before logging in again.
 if (localStorage.getItem('userToken')) {
-    location.assign('./contents/users');
+    location.assign('./contents/users.html');
 }
 // if it eventually falls in this page? go back to adminuser.
 if (localStorage.getItem('adminToken')) {
