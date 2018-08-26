@@ -6,6 +6,7 @@
 
 body{
 	text-align: center;
+	background:  #1E1E23FF;
 }
 
 h1 {
@@ -16,6 +17,24 @@ h1, h2, h3 {
 	text-align: center;
 }
 
+h3.hello {
+	font-size: 18px;
+}
+
+p {
+	color: #444;
+}
+
+a.link {
+	color: #1A73E8FF;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+h1.color {
+	color: #444;
+}
+
 label{
 	display:block;
 }
@@ -23,8 +42,8 @@ label{
 
 main {
 	width: 80%; 
-	margin: 50px auto; 
-	background-color: #1CE0E2FF; 
+	margin: 30px auto; 
+	background: #fff;
 	border-radius: 20px; 	
 	font-size:13px;
 	padding: 10px;
@@ -33,26 +52,16 @@ main {
 
 .signupform {
 	max-width: 500px;
-	border: 1px solid black;
+	border: 1px solid #C9C9C9FF;
 	margin: 30px auto;
 	padding: 1.4rem 0;
 	border-radius: 5px;
 }
 
-#request-form{
-	width: 90%;
-	margin-top:5px;
-	border:0;
-}
-
-#request-form textarea {
-	border: 1px solid black;
-}
-
 .inputClass {
 	width: 90%;
 	margin-top: 5px;
-	border: 1px solid black;
+	border: 1px solid #C9C9C9FF;
 	padding: 0.8rem;
 	font-size: 1rem;
 }
@@ -62,8 +71,12 @@ main {
 }
 
 button {
-   border: 1px solid black;
-   cursor: pointer;
+	border-radius:4px;
+	border: 0px;
+	cursor: pointer;
+	background: #1A73E8FF;
+	color: #fff;
+	font-weight: bolder;
 }
 
 .button button {
@@ -88,42 +101,152 @@ form h3 {
 .user-page .searchBar select{height:30px; width:120px;}
 .user-page .searchBar button{width:40px; height:30px; position:absolute; padding:0;}
 
+aside.left div {
+	text-align: left;
+}
 
-aside textarea{width: 90%;height: 200px; resize: none;}
-aside img{margin-top: 20px;}
-aside label{display: inline;}
-aside p #view-request{float:right; color:blue; margin-right:30px; padding:5px;}
+aside.left div.profilePic {
+	text-align: center;
+	border-radius: 5px;
+	background: #EDEDEDFF;
+	padding-bottom: 10px;
+}
 
-.user-table{
+aside.left div p.about {
+	margin-top: 20px;
+	margin-left: 8px;
+	color:black;
+	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+	font-weight: bolder;
+}
+
+aside.left div textarea {
+	border: 0px;
+	color:#444;
+	height: 115px;
+	font-size: 11px;
 	width: 100%;
+	padding: 8px;
+	resize: none;
 }
-table {
-    border-collapse: collapse;
+
+
+aside.left div.profile {
+	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
+	background: #fff;
+}
+
+aside.left div table {
+	width: 100%;
+	border-radius: 5px;
+	font-weight: bold;
+	color:black;
+}
+
+
+aside.left p{
+	width:100%;
+	margin: auto;
+}
+
+aside.left p span {
+	float:right;
+	color:#1A73E8FF;
+}
+aside label{display: inline;}
+
+aside.right {
+	border-radius: 5px;
+	background: #EDEDEDFF;
+}
+
+aside.right p {
+    margin: auto;
+}
+aside.right div#topMessage {
+	width: 80%;
+	margin: auto;
+}
+
+aside.right div#topMessage p span {
+	float:right;
+	color:#1A73E8FF;
+	padding:5px;
+}
+
+aside.right div#topMessage p#prompt {
+	font-size:16px;
+	color: #E93E15FF;
+	font-weight: lighter;
+	display: block;
+}
+
+aside.right div#topMessage img {
+	display: none;
+}
+
+aside.right form#request-form{
+	width: 90%;
+	margin-top:5px;
+	border:0;
+	margin: auto;
+}
+
+aside.right form#request-form textarea {
+	border-radius: 3px;
+	color:#222;
+	border: 1px solid #C9C9C9FF;
+	width: 90%;
+	height: 200px; 
+	resize: none;
+}
+
+aside.right form#request-form textarea:focus {
+	border-radius: 3px;
+	border:2px solid blue;
+}
+
+table.user-table{
+	border-collapse: collapse;
     margin-bottom:50px; 
+	width: 100%;
+	color: #444;
 }
 
-th, tr, td{
+table.user-table tbody.table-body,
+table.user-table thead { display: block; }
+
+.table-body {
+	height: 420px;
+	overflow: auto;
+}
+
+th, tr, td {
+	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     text-align: left;
-    border-bottom: 1px solid blue;
+    padding: 7px;
+    border-bottom: 2px solid #EDEDEDFF;
 }
 
-footer{margin-bottom:10px;}
+footer {
+	margin-bottom:10px;
+}
 
 .welcome-msg {
 	margin-top: 30px;
 }
 
-p {
-	width: 70%;
-	margin: 0 auto;
-}
-
-aside p{
-	width:100%;
-}
 .notes {
 	margin-top: 4px;
 }
 input[type=radio]{
 	margin: 20px 30px 20px 10px;
+}
+
+.iconCssLoading {
+  width: 200px;
+  height: 20px;
+  background: url(../img/loadingSmall.gif) 50% no-repeat;
+  border: 1px solid black;
+  border-radius: 5px;
 }
