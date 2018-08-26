@@ -34,7 +34,7 @@ const postData = (url, data) => fetch(url, { // Default options are marked with 
     headers: {
         'Content-Type': 'application/json; charset=utf-8',
         id: localStorage.getItem('id'),
-        'x-access-token': localStorage.getItem('token'),
+        'x-access-token': localStorage.getItem('userToken'),
         // "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: 'follow', // manual, *follow, error
