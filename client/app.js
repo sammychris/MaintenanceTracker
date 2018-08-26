@@ -1,6 +1,8 @@
 import './stylesheet/style.css';
 import './stylesheet/w3.css';
 import './fonts';
+import './img/proPic.png';
+import './img/loadingSmall.gif';
 
 const scriptTag = document.querySelector('script');
 const currentPage = scriptTag.getAttribute('page');
