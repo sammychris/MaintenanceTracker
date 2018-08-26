@@ -1,6 +1,8 @@
-const textField = document.getElementsByTagName('textarea')[0];
+const textField = document.getElementById('message');
 const logOut = document.getElementById('log-out');
-const btnInput = document.getElementsByTagName('button');
+const form = document.querySelector('form');
+const loadingImgId = document.getElementById('loading');
+const promtMessage = document.getElementById('prompt');
 
 const request = {};
 
@@ -11,7 +13,7 @@ if (localStorage.length < 1) {
 
 // admin must loggout before logging in again.
 if (localStorage.getItem('adminToken')) {
-    location.assign('../admin/admin-requests');
+    location.assign('../admin/requests.html');
 }
 
 const postData = (url, data) => fetch(url, { // Default options are marked with *
@@ -22,6 +24,7 @@ const postData = (url, data) => fetch(url, { // Default options are marked with 
     headers: {
         'Content-Type': 'application/json; charset=utf-8',
         id: localStorage.getItem('id'),
+        'x-access-token': localStorage.getItem('userToken'),
         // "Content-Type": "application/x-www-form-urlencoded",
     },
     redirect: 'follow', // manual, *follow, error
@@ -31,29 +34,44 @@ const postData = (url, data) => fetch(url, { // Default options are marked with 
     .then(response => response.json()); // parses response to JSON
 
 
-// setting the repair and maintenance button along side the request...
-for (let i = 0; i < btnInput.length; i++) {
-    btnInput[i].onclick = (e) => {
-        e.preventDefault();
-        const text = textField.value.trim();
-        if (text.length < 10) return alert('Should not be less the 10 character');
-        request.type = this.value;
-        request.description = text;
+const promptMessTimeOut = (message) => {
+    promtMessage.style.display = 'block';
+    promtMessage.innerHTML = message;
+    return setTimeout(() => {
+        promtMessage.style.display = 'none';
+    }, 10000);
+};
 
-        return postData('/users/requests', request)
+
+const loadsApiTwoSeconds = (url) => {
+    setTimeout(() => {
+        postData(url, request)
             .then((result) => {
                 console.log(result);
                 if (result.error) {
-                    alert(result.error);
+                    promptMessTimeOut(result.error);
                     localStorage.clear();
                     return location.assign('./../');
                 }
-                return alert(result.message);
+                textField.value = '';
+                loadingImgId.style.display = 'none';
+                return promptMessTimeOut(result.message);
             })
             .catch(error => console.error(error));
-        textField.value = '';
-    };
-}
+    }, 2000);
+};
+// setting the repair and maintenance button along side the request...
+form.onsubmit = (e) => {
+    e.preventDefault();
+    const text = textField.value.trim();
+    promtMessage.style.display = 'none';
+
+    if (text.length < 20) return promptMessTimeOut('Description is too short!');
+    loadingImgId.style.display = 'block';
+    request.type = e.target.value;
+    request.description = text;
+    return loadsApiTwoSeconds('/users/requests');
+};
 
 
 // logging out the user
