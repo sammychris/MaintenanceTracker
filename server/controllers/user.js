@@ -47,4 +47,18 @@ export default {
         });
         return console.log(idByIndex);
     },
+
+    upload(req, res) {
+        const { id } = req.headers;
+        const userById = user.db[id];
+        const filePath = `../img/uploads/${req.file.filename}`;
+        userById.profilePicSrc = filePath;
+        res.send({ message: 'Image uploaded successfully!' });
+    },
+
+    profile(req, res) {
+        const { id } = req.headers;
+        const userById = user.db[id];
+        res.send(userById);
+    },
 };
