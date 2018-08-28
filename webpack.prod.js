@@ -42,17 +42,12 @@ module.exports = merge( common, {
         use: [MinifyCssPlugin.loader, "css-loader"]
       },
       {
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-        loader: "url-loader?limit=100000"
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/i,
         use: [
           {
-            loader: 'file-loader',
+            loader: 'url-loader',
             options: {
-              name: 'img/[name].[ext]',
-              context: ''
+              limit: 100000
             }
           }
         ]
