@@ -3,8 +3,12 @@ const logOut = document.getElementById('log-out');
 const form = document.querySelector('form');
 const loadingImgId = document.getElementById('loading');
 const promtMessage = document.getElementById('prompt');
+const upload = document.getElementById('fileSelect');
+const fileElem = document.getElementById('fileElem');
+const profileImg = document.getElementById('profileImg');
 
 const request = {};
+
 
 if (localStorage.length < 1) {
     alert('sorry this user needs to login!');
@@ -15,6 +19,29 @@ if (localStorage.length < 1) {
 if (localStorage.getItem('adminToken')) {
     location.assign('../admin/requests.html');
 }
+
+
+const getUserProfile = (url) => {
+    fetch(url, {
+        method: 'GET',
+        headers: {
+            id: localStorage.getItem('id'),
+            'x-access-token': localStorage.getItem('userToken'),
+        },
+        mode: 'cors',
+        cache: 'default',
+    }).then(response => response.json())
+        .then((user) => {
+            const { profilePicSrc } = user;
+            if (profilePicSrc) {
+                profileImg.src = profilePicSrc;
+            } else {
+                console.log(profilePicSrc);
+                profileImg.src = '../img/proPic.png';
+            }
+            return console.log(user);
+        });
+};
 
 const postData = (url, data) => fetch(url, { // Default options are marked with *
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
@@ -73,6 +100,41 @@ form.onsubmit = (e) => {
     return loadsApiTwoSeconds('/users/requests');
 };
 
+upload.addEventListener('click', (e) => {
+    if (fileElem) {
+        fileElem.click();
+    }
+    e.preventDefault(); // prevent navigation to "#"
+}, false);
+
+
+fileElem.onchange = (e) => {
+    const { files } = e.target;
+    const formData = new FormData();
+
+    if (!files.length) {
+        console.log('no file path specified!');
+    } else if (files.length > 1) {
+        alert('This is not allowed!');
+    } else {
+        formData.append('avatar', files[0]);
+        fetch('/users/profile/upload', {
+            method: 'PUT',
+            headers: {
+                id: localStorage.getItem('id'),
+            },
+            body: formData,
+        })
+            .then(response => response.json())
+            .catch(error => console.error('Error:', error))
+            .then((response) => {
+                console.log('Success:', JSON.stringify(response));
+                return getUserProfile('/users/profile');
+            });
+    }
+};
+
+getUserProfile('/users/profile');
 
 // logging out the user
 logOut.onclick = () => {
