@@ -153,6 +153,22 @@ aside.left p span {
 	float:right;
 	color:#1A73E8FF;
 }
+
+aside.left td.editpen {
+	padding:0; 
+	border:0;
+	width:10px;
+}
+
+aside.left a.edit {
+	width: 15px;
+	height: 15px;
+	display: block;
+	background-image: url(/img/modify_pen.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 aside label{display: inline;}
 
 aside.right {
