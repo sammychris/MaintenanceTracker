@@ -22,6 +22,7 @@ const { verifyUser, verifyAdmin } = auth;
 export default (app) => {
     app.post('/auth/signup', user.signUp);
     app.post('/auth/login', user.logIn);
+    app.put('/users/:id', user.update);
 
     app.get('/users/requests', verifyUser, request.allByUser);
     app.get('/users/requests/:requestId', verifyUser, request.aReq);
