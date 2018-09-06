@@ -61,4 +61,18 @@ export default {
         const userById = user.db[id];
         res.send(userById);
     },
+
+    update(req, res) {
+        const {
+            about, sex, organisation, country, address,
+        } = req.body;
+        const { id } = req.params;
+        const userById = user.db[id];
+        userById.about = about;
+        userById.sex = sex;
+        userById.organisation = organisation;
+        userById.country = country;
+        userById.address = address;
+        res.send({ message: 'updated successfully!' });
+    },
 };
