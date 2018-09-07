@@ -41,7 +41,7 @@ login.onsubmit = (e) => {
                 localStorage.setItem('adminToken', result.token);
                 localStorage.setItem('id', result.id);
                 localStorage.setItem('admin', JSON.stringify(result.user));
-                return location.assign('./dashboard.html');
+                return location.assign(`${location.origin}/admin/dashboard.html`);
             }
             return alert('This user is not an admin');
         })
