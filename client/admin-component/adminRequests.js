@@ -1,4 +1,8 @@
 const display = document.getElementsByTagName('tbody')[0];
+const board = document.getElementById('board');
+const trTag = document.getElementsByClassName('trTag');
+const itemDist = document.getElementsByClassName('des');
+
 
 // if it eventually falls in this page? go back to user.
 if (localStorage.getItem('userToken')) {
@@ -13,35 +17,55 @@ const crTag = (parent, tagName) => {
 };
 
 
-const RequestTag = (date, name, type, state) => {
+const RequestTag = (date, name, type, description) => {
     const tag = crTag(display, 'tr');
+    const newDescription = description.slice(0, 18);
+    tag.className = 'trTag';
     crTag(tag, 'td').innerHTML = date;
     crTag(tag, 'td').innerHTML = name;
     crTag(tag, 'td').innerHTML = type;
-    const tdButton1 = crTag(tag, 'td');
-    const tdButton2 = crTag(tag, 'td');
 
-    const button1 = crTag(tdButton1, 'button');
-    const button2 = crTag(tdButton1, 'button');
+    const descriptionSet = crTag(tag, 'td');
+    descriptionSet.innerHTML = newDescription;
 
-    const iTag1 = crTag(button1, 'i');
-    iTag1.className = 'material-icons';
-    iTag1.innerHTML = 'arrow_forward';
-
-    const iTag2 = crTag(button2, 'i');
-    iTag2.className = 'material-icons';
-    iTag2.innerHTML = 'close';
-
-    crTag(tdButton2, 'button').innerHTML = 'Resolve';
+    const tdAnchor = crTag(tag, 'td');
+    crTag(tdAnchor, 'a').className = 'accept';
+    crTag(tdAnchor, 'a').className = 'reject';
+    crTag(tdAnchor, 'a').className = 'greyresolve';
 };
 
-
-const getAllRequest = (url, request) => fetch(url, request)
+// This part is for the board... on hover
+const displayRequest = (url, requests, index, event, padding) => fetch(url, requests)
     .then((response) => {
         response.json().then((result) => {
             const data = result.requests;
-            console.log(data);
-            data.forEach(obj => RequestTag(obj.date, obj.name, obj.type));
+            itemDist[0].innerHTML = data[index].date;
+            itemDist[1].innerHTML = data[index].name;
+            itemDist[2].innerHTML = data[index].type;
+            itemDist[3].innerHTML = data[index].description;
+            board.style.display = 'block';
+            board.style.top = `${event.clientY + padding}px`;
+        });
+    });
+
+
+const getAllRequest = (url, dataInfo) => fetch(url, dataInfo)
+    .then((response) => {
+        response.json().then((result) => {
+            const data = result.requests;
+            data.forEach(obj => RequestTag(obj.date, obj.name, obj.type, obj.description));
+
+            for (let i = 0; i < trTag.length; i++) {
+                trTag[i].onmouseenter = (e) => {
+                    if (e.clientY > 500) {
+                        return displayRequest(url, dataInfo, i, e, -150);
+                    }
+                    return displayRequest(url, dataInfo, i, e, 70);
+                };
+                trTag[i].onmouseleave = () => {
+                    board.style.display = 'none';
+                };
+            }
         });
     });
 
