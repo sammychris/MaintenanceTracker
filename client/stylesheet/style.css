@@ -169,7 +169,35 @@ aside.left a.edit {
 	background-size: contain;
 }
 
+
+aside.left a.save {
+	width: 15px;
+	height: 15px;
+	display: block;
+	background-image: url(/img/saving.jpg);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
 aside label{display: inline;}
+
+aside.admin #board {
+	max-width: 300px;
+	position:absolute;
+	top: 50%;
+	left: 50%;
+	display: none;
+	text-align: left;
+	padding: 10px;
+	background: #fff;
+	border: 1px solid #C1C2C3FF;
+	border-radius: 5px;
+	box-shadow: 1px 3px #AAAAAA79;
+}
+aside.admin #board p {
+	margin:0;
+	font-size: 11px;
+}
 
 aside.right {
 	border-radius: 5px;
@@ -222,26 +250,52 @@ aside.right form#request-form textarea:focus {
 	border:2px solid blue;
 }
 
-table.user-table{
-	border-collapse: collapse;
-    margin-bottom:50px; 
-	width: 100%;
+.user-table {
+	margin-bottom:50px; 
 	color: #444;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
 }
 
-table.user-table tbody.table-body,
-table.user-table thead { display: block; }
-
-.table-body {
-	height: 420px;
-	overflow: auto;
+.user-table thead tr {
+   display: block;
 }
+
+.user-table tbody {
+  display:block;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 420px;
+  background: #F4F7F7FF;
+  border-top: 1px solid #E2E8EAFF;
+  border-bottom: 2px solid #E2E8EAFF;
+}
+
+.user-table tbody tr {
+	border-top: 1px solid #E2E8EAFF;
+	cursor: pointer;
+}
+
+.user-table tbody tr:hover {
+	border: 1px solid #C1C2C3FF;
+	box-shadow: 1px 3px #AAAAAA79;
+}
+
+.user-table tbody tr:hover + .first{
+	display: 'block';
+}
+
+.user-table th, .user-table td {
+  width: 122px;
+}
+
 
 th, tr, td {
 	font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     text-align: left;
-    padding: 7px;
-    border-bottom: 2px solid #EDEDEDFF;
+    padding: 5px;
 }
 
 footer {
@@ -259,10 +313,89 @@ input[type=radio]{
 	margin: 20px 30px 20px 10px;
 }
 
-.iconCssLoading {
-  width: 200px;
-  height: 20px;
-  background: url(../img/loadingSmall.gif) 50% no-repeat;
-  border: 1px solid black;
-  border-radius: 5px;
+a.accept {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/greyaccept.png);
+	background-repeat: no-repeat;
+	background-size: contain;
 }
+a.accept:hover { background-image: url(/img/accept1.png); }
+
+
+a.reject {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/greyreject.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+a.reject:hover { background-image: url(/img/Cancel.png); }
+
+a.greyresolve {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/greyresolve.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	cursor: default;
+}
+
+a.resolving {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/resolving.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	border-radius: 7px;
+}
+a.resolving:hover {
+	background-image: url(/img/resolved.png);
+}
+
+
+a.resolved {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/resolved.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+a.accepted {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/accept1.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+a.rejected {
+	width: 20px;
+	height: 20px;
+	margin-right: 15px;
+	display: inline-block;
+	background-image: url(/img/Cancel.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.first {
+	display: none;
+} 
+
+.second {
+	display: block;
+} 
