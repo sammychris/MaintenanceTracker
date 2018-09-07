@@ -5,7 +5,11 @@ const loadingImgId = document.getElementById('loading');
 const promtMessage = document.getElementById('prompt');
 const upload = document.getElementById('fileSelect');
 const fileElem = document.getElementById('fileElem');
-const profileImg = document.getElementById('profileImg');
+const profImg = document.getElementById('profileImg');
+const editbuttons = document.getElementsByClassName('edit');
+const inputsModify = document.getElementsByClassName('modifying');
+const greetUser = document.getElementById('greeting');
+const userEmail = document.getElementById('email');
 
 const request = {};
 
@@ -32,14 +36,19 @@ const getUserProfile = (url) => {
         cache: 'default',
     }).then(response => response.json())
         .then((user) => {
-            const { profilePicSrc } = user;
-            if (profilePicSrc) {
-                profileImg.src = profilePicSrc;
-            } else {
-                console.log(profilePicSrc);
-                profileImg.src = '../img/proPic.png';
-            }
-            return console.log(user);
+            const {
+                firstname, email, about, sex, organisation, country, address, profilePicSrc,
+            } = user;
+            greetUser.innerHTML = `Hi ${firstname}!`;
+            userEmail.innerHTML = email;
+
+            // if about is undefined use the default placeholder value..
+            if (about) inputsModify[0].value = about;
+            inputsModify[1].innerHTML = sex || '';
+            inputsModify[2].innerHTML = organisation || '';
+            inputsModify[3].innerHTML = country || '';
+            inputsModify[4].innerHTML = address || '';
+            profImg.src = profilePicSrc || '../img/proPic.png';
         });
 };
 
@@ -134,7 +143,46 @@ fileElem.onchange = (e) => {
     }
 };
 
-getUserProfile('/users/profile');
+const editting = (e) => {
+    e.preventDefault();
+    const { id } = e.target;
+    const userId = localStorage.getItem('id');
+
+    if (e.target.className === 'save') {
+        const userData = {
+            about: inputsModify[0].value,
+            sex: inputsModify[1].innerHTML,
+            organisation: inputsModify[2].innerHTML,
+            country: inputsModify[3].innerHTML,
+            address: inputsModify[4].innerHTML,
+        };
+        inputsModify[id].contentEditable = false;
+        inputsModify[id].readOnly = true;
+        e.target.className = 'edit';
+        e.target.title = 'modify';
+        fetch(`/users/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'x-access-token': localStorage.getItem('userToken'),
+            },
+            body: JSON.stringify(userData),
+        });
+        return getUserProfile('/users/profile'); // getting user informations
+    }
+    inputsModify[id].contentEditable = true;
+    inputsModify[id].readOnly = false;
+    inputsModify[id].focus();
+    e.target.className = 'save';
+    e.target.title = 'save';
+    return console.log(e.target);
+};
+
+getUserProfile('/users/profile'); // getting user informations
+
+for (let i = 0; i < editbuttons.length; i++) {
+    editbuttons[i].onclick = editting;
+}
 
 // logging out the user
 logOut.onclick = () => {
