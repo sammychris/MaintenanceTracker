@@ -36,4 +36,5 @@ export default (app) => {
 
     app.put('/users/profile/upload', upload.single('avatar'), user.upload);
     app.get('/users/profile', user.profile);
+    app.get('/notifications', request.notification);
 };
