@@ -11,6 +11,7 @@ export default {
             firstname, lastname, email, password,
         } = req.body;
         const info = {
+            id: user.db.length,
             firstname,
             lastname,
             email,
@@ -26,14 +27,10 @@ export default {
     },
 
     logIn(req, res) {
-        let idByIndex;
         const adminSecret = process.env.ADMIN_KEY;
         const userSecret = process.env.USER_KEY;
         const { email, password, admin } = req.body;
-        const findUser = user.db.find((e, i) => {
-            idByIndex = i;
-            return e.email === email.toLowerCase();
-        });
+        const findUser = user.db.find(e => e.email === email.toLowerCase());
         if (!findUser) return res.send({ error: 'user does not exist!' });
         if (findUser.password !== password) return res.send({ error: 'wrong password' });
         const secretKey = (admin && findUser.role) ? adminSecret : userSecret;
@@ -41,16 +38,16 @@ export default {
             if (err) return console.log(err);
             return res.status(202).send(
                 {
-                    message: 'loggedin successfully', token, id: idByIndex, user: findUser,
+                    message: 'loggedin successfully', token, id: findUser.id, user: findUser,
                 },
             );
         });
-        return console.log(idByIndex);
+        return console.log(findUser.id);
     },
 
     upload(req, res) {
         const { id } = req.headers;
-        const userById = user.db[id];
+        const userById = user.db.find(a => a.id === id);
         const filePath = `../img/uploads/${req.file.filename}`;
         userById.profilePicSrc = filePath;
         res.send({ message: 'Image uploaded successfully!' });
@@ -58,7 +55,7 @@ export default {
 
     profile(req, res) {
         const { id } = req.headers;
-        const userById = user.db[id];
+        const userById = user.db.find(a => a.id === id);
         res.send(userById);
     },
 
@@ -67,7 +64,7 @@ export default {
             about, sex, organisation, country, address,
         } = req.body;
         const { id } = req.params;
-        const userById = user.db[id];
+        const userById = user.db.find(a => a.id === id);
         userById.about = about;
         userById.sex = sex;
         userById.organisation = organisation;
