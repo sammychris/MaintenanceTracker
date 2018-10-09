@@ -13,10 +13,6 @@ const searchButton = document.getElementById('search');
 const topMessage = document.getElementById('message-section');
 
 
-let notificate = false;
-let windowClick = false;
-
-
 // if it eventually falls in this page? go back to user.
 if (localStorage.getItem('userToken')) {
     location.assign('../contents/users.html');
@@ -38,50 +34,14 @@ function refreshingElments(parent, children) {
     }
 }
 
-
-// looping through the left section elements..
-for (let i = 0; i < accessing.length; i++) {
-    accessing[i].onclick = () => {
-        refreshingElments(display, trTag);
-        getAllRequest().then((result) => {
-            const data = result.requests;
-            if (i === 3) {
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
-                htmlElements(data, 'rejected');
-            } else if (i === 4) {
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
-                htmlElements(data, 'resolved');
-            } else if (i === 5) {
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
-                htmlElements(data);
-            }
-        });
-    };
-} // left section ends here
-
-window.onclick = () => {
-    const displayNotification = document.querySelector('.notification-container');
-    const board = document.getElementById('board');
-    board.style.display = 'none';
-    if (windowClick && notificate) {
-        displayNotification.style.display = 'none';
-        windowClick = false;
-    }
-};
-
-clickNotification.onclick = () => {
+function notifyingEvent() {
     const displayNotification = document.querySelector('.notification-container');
     const ul = document.getElementById('notification-panel');
-    const li = document.querySelectorAll('.liHover');
+    const li = document.getElementsByClassName('liHover');
     if (li[0]) refreshingElments(ul, li);
     setTimeout(() => {
-        if (!windowClick && !notificate) {
+        if (displayNotification.style.display === 'none') {
             displayNotification.style.display = 'block';
-            windowClick = true;
-            notificate = true;
             getAllRequest().then((result) => {
                 const data = result.requests;
                 data.sort((a, b) => b.sorting - a.sorting).filter((a) => {
@@ -93,9 +53,73 @@ clickNotification.onclick = () => {
             });
         } else {
             displayNotification.style.display = 'none';
-            notificate = false;
         }
     }, 100);
+}
+
+
+// looping through the left section elements..
+for (let i = 0; i < accessing.length; i++) {
+    accessing[i].onclick = () => {
+        getAllRequest().then((result) => {
+            const data = result.requests;
+            if (i === 0) {
+                refreshingElments(display, trTag);
+                document.querySelector('.all-requests-page').style.display = 'block';
+                document.querySelector('.chat-page').style.display = 'none';
+                document.querySelector('#head-section h3').innerText = 'Newest Requests';
+                document.querySelector('.calendar').style.display = 'block';
+                display.style.height = `${80}px`;
+                accessing[i].style.color = 'black';
+                accessing[i].style.background = '#EDEDEDFF';
+                accessing[i].style.borderRadius = 5 + 'px';
+                htmlElements(data, 'pending');
+            } else if (i === 1) {
+                notifyingEvent();
+            } else if (i === 2) {
+                refreshingElments(display, trTag);
+                document.querySelector('.all-requests-page').style.display = 'block';
+                document.querySelector('.chat-page').style.display = 'none';
+                document.querySelector('#head-section h3').innerText = 'Unresolved Requests';
+                document.querySelector('.calendar').style.display = 'none';
+                display.style.height = `${370}px`;
+                htmlElements(data, 'accepted');
+            } else if (i === 3) {
+                refreshingElments(display, trTag);
+                document.querySelector('.all-requests-page').style.display = 'block';
+                document.querySelector('.chat-page').style.display = 'none';
+                document.querySelector('#head-section h3').innerText = 'Rejected Requests';
+                document.querySelector('.calendar').style.display = 'none';
+                display.style.height = `${370}px`;
+                htmlElements(data, 'rejected');
+            } else if (i === 4) {
+                refreshingElments(display, trTag);
+                document.querySelector('.all-requests-page').style.display = 'block';
+                document.querySelector('.chat-page').style.display = 'none';
+                document.querySelector('#head-section h3').innerText = 'Resolved Requests';
+                document.querySelector('.calendar').style.display = 'none';
+                htmlElements(data, 'resolved');
+            } else if (i === 5) {
+                refreshingElments(display, trTag);
+                document.querySelector('.all-requests-page').style.display = 'block';
+                document.querySelector('.chat-page').style.display = 'none';
+                document.querySelector('.calendar').style.display = 'none';
+                display.style.height = `${370}px`;
+                htmlElements(data);
+            }
+        });
+    };
+} // left section ends here
+
+window.onclick = () => {
+    const displayNotification = document.querySelector('.notification-container');
+    const board = document.getElementById('board');
+    board.style.display = 'none';
+    displayNotification.style.display = 'none';
+};
+
+clickNotification.onclick = () => {
+    notifyingEvent();
 };
 
 
