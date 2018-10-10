@@ -9,18 +9,15 @@ body{
 	background:  #1E1E23FF;
 }
 
-h1 {
-	font-family: 'Yesteryear', cursive;
-}
+
 
 h1, h2, h3 {
 	text-align: center;
 }
 
 h3.hello {
-	font-size: 16px;
+	font:bold 14px Roboto,RobotoDraft,Helvetica,Arial,sans-serif;
     color: #444;
-    font-weight: 600;
 }
 
 p {
@@ -28,7 +25,7 @@ p {
 }
 
 .hover-any:hover {
-	color:black;
+	color:#d93025;
 }
 
 a.link {
@@ -230,7 +227,6 @@ aside.admin table tr {
 }
 
 aside.admin table tr td{
-	font-family: Verdana,sans-serif;
     font-weight: bolder;
     padding: 5px;
     margin-top: 5px;
