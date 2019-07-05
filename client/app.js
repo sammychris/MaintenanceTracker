@@ -1,18 +1,30 @@
-import './stylesheet/style.css';
-import './stylesheet/w3.css';
-import './fonts';
+import React from 'react';
+import { Route, Switch } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
+import UserPage from './pages/UserPage';
+import './styling.scss';
 
-const scriptTag = document.querySelector('script');
-const currentPage = scriptTag.getAttribute('page');
-if (!currentPage) throw Error('No entry module specified!');
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sign: false,
+      users: false,
+    };
+  }
 
-switch (currentPage) {
-case 'admin': require('./admin-component/admin'); break;
-case 'admin-login': require('./admin-component/adminLogin'); break;
-case 'admin-requests': require('./admin-component/adminRequests'); break;
-case 'user-login': require('./user-component/login'); break;
-case 'user-requests': require('./user-component/userHistoryReq'); break;
-case 'user-new-request': require('./user-component/userNewReq'); break;
-case 'view-a-request': require('./user-component/viewAreq'); break;
-default: throw new Error(`Unknown entry module: ${currentPage}`);
+  render() {
+    return (
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/auth/signin" component={SignUp} />
+        <Route path="/auth/signup" component={SignIn} />
+        <Route path="/dashboard" component={UserPage} />
+      </Switch>
+    );
+  }
 }
+
+export default App;
