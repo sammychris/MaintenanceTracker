@@ -17,8 +17,8 @@ module.exports = merge( common, {
         }
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', "css-loader"]
+        test: /\.(sass|scss|css)$/i,
+        use: ['style-loader', "css-loader", "sass-loader"]
       },
       {
         test: /\.(png|jpg|gif|woff|woff2|eot|ttf|svg)$/i,
