@@ -1,7 +1,11 @@
-import user from './db/user';
-// import valid from './validator';
+import db from './db';
 
 
-export default {
-    db: user,
-};
+const userSchema = new db.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    password: { type: String, required: true },
+    chat: { type: db.Schema.Types.ObjectId, ref: 'Chat' },
+});
+
+export default db.model('User', userSchema);

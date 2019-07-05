@@ -21,20 +21,21 @@ const { verifyUser, verifyAdmin } = auth;
 
 export default (app) => {
     app.post('/auth/signup', user.signUp);
-    app.post('/auth/login', user.logIn);
-    app.put('/users/:id', user.update);
+    app.post('/auth/signin', user.signIn);
+    // app.put('/users/:id', user.update);
 
-    app.get('/users/requests', verifyUser, request.allByUser);
-    app.get('/users/requests/:requestId', verifyUser, request.aReq);
-    app.post('/users/requests', verifyUser, request.create);
-    app.put('/users/requests/:requestId', verifyUser, request.modify);
+    app.get('/users/requests', request.allByOneUser);
+    app.get('/users/requests/:requestId', /* verifyUser, */ request.oneRequest);
+    app.post('/users/requests', request.create);
+    app.put('/users/requests/:requestId', /* verifyUser, */ request.modify);
 
-    app.get('/requests', verifyAdmin, request.allReq);
-    app.put('/requests/:requestId/approve', verifyAdmin, request.approve);
-    app.put('/requests/:requestId/disapprove', verifyAdmin, request.disapprove);
-    app.put('/requests/:requestId/resolve', verifyAdmin, request.resolve);
+    app.get('/requests', /* verifyAdmin, */ request.allRequest);
+    // app.put('/requests/:requestId/approve', verifyAdmin, request.approve);
+    // app.put('/requests/:requestId/disapprove', verifyAdmin, request.disapprove);
+    // app.put('/requests/:requestId/resolve', verifyAdmin, request.resolve);
 
-    app.put('/users/profile/upload', upload.single('avatar'), user.upload);
-    app.get('/users/profile', user.profile);
+    // app.put('/users/profile/upload', upload.single('avatar'), user.upload);
+    app.get('/users/:id', user.oneUser);
     app.get('/notifications', request.notification);
+    // app.get('/users/:id/chats', user.usersChats);
 };
