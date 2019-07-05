@@ -1,3 +1,3 @@
 module.exports = (b) => {
-	alert(b);
+    alert(b);
 };

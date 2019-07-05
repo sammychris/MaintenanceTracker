@@ -3,6 +3,7 @@ import getAllRequest from './middlewares/getAllRequest';
 import RequestTag from './middlewares/RequestTag';
 import masterEventsForAllRequests from './middlewares/masterEventsForAllRequests';
 import htmlElements from './middlewares/htmlElements';
+import chatMessages from './sections/chat';
 
 const display = document.getElementsByTagName('tbody')[1];
 const trTag = document.getElementsByClassName('trTag');
@@ -63,48 +64,99 @@ for (let i = 0; i < accessing.length; i++) {
     accessing[i].onclick = () => {
         getAllRequest().then((result) => {
             const data = result.requests;
+            const dashboard = document.querySelector('.dashboard-page');
+            const chat = document.querySelector('.chat-page');
+            const requestPage = document.querySelector('.all-requests-page');
+            const tabs = document.querySelectorAll('.tabs');
+            // const newestSection = document.querySelector('.newest-requests');
+            // const newestSectionTable = document.querySelector('.newest-requests table');
+
             if (i === 0) {
                 refreshingElments(display, trTag);
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
-                document.querySelector('#head-section h3').innerText = 'Newest Requests';
-                document.querySelector('.calendar').style.display = 'block';
-                display.style.height = `${80}px`;
-                accessing[i].style.color = 'black';
-                accessing[i].style.background = '#EDEDEDFF';
-                accessing[i].style.borderRadius = 5 + 'px';
+                dashboard.style.display = 'block';
+                chat.style.display = 'none';
+                requestPage.style.display = 'none';
+                tabs[0].className = 'tabs active';
+                tabs[1].className = 'tabs';
+                tabs[2].className = 'tabs';
+                tabs[3].className = 'tabs';
+                tabs[4].className = 'tabs';
+                tabs[5].className = 'tabs';
+                topMessage.className = 'tabs';
+                clickNotification.className = 'tabs';
                 htmlElements(data, 'pending');
             } else if (i === 1) {
                 notifyingEvent();
+                tabs[1].className = 'tabs active';
+                clickNotification.className = 'tabs active';
             } else if (i === 2) {
                 refreshingElments(display, trTag);
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
+                requestPage.style.display = 'block';
+                chat.style.display = 'none';
+
+                // newestSection.removeChild(newestSectionTable) // take note of this section
+                dashboard.style.display = 'none';
                 document.querySelector('#head-section h3').innerText = 'Unresolved Requests';
-                document.querySelector('.calendar').style.display = 'none';
                 display.style.height = `${370}px`;
+                tabs[0].className = 'tabs';
+                tabs[1].className = 'tabs';
+                tabs[2].className = 'tabs active';
+                tabs[3].className = 'tabs';
+                tabs[4].className = 'tabs';
+                tabs[5].className = 'tabs';
+                topMessage.className = 'tabs';
+                clickNotification.className = 'tabs';
                 htmlElements(data, 'accepted');
             } else if (i === 3) {
                 refreshingElments(display, trTag);
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
+                requestPage.style.display = 'block';
+                chat.style.display = 'none';
+
+                // newestSection.removeChild(newestSectionTable) // take note of this section
+                dashboard.style.display = 'none';
                 document.querySelector('#head-section h3').innerText = 'Rejected Requests';
-                document.querySelector('.calendar').style.display = 'none';
                 display.style.height = `${370}px`;
+                tabs[0].className = 'tabs';
+                tabs[1].className = 'tabs';
+                tabs[2].className = 'tabs';
+                tabs[3].className = 'tabs active';
+                tabs[4].className = 'tabs';
+                tabs[5].className = 'tabs';
+                clickNotification.className = 'tabs';
+                topMessage.className = 'tabs';
                 htmlElements(data, 'rejected');
             } else if (i === 4) {
                 refreshingElments(display, trTag);
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
+                requestPage.style.display = 'block';
+                chat.style.display = 'none';
+
+                // newestSection.removeChild(newestSectionTable) // take note of this section
+                dashboard.style.display = 'none';
                 document.querySelector('#head-section h3').innerText = 'Resolved Requests';
-                document.querySelector('.calendar').style.display = 'none';
+                tabs[0].className = 'tabs';
+                tabs[1].className = 'tabs';
+                tabs[2].className = 'tabs';
+                tabs[3].className = 'tabs';
+                tabs[4].className = 'tabs active';
+                tabs[5].className = 'tabs';
+                clickNotification.className = 'tabs';
+                topMessage.className = 'tabs';
                 htmlElements(data, 'resolved');
             } else if (i === 5) {
                 refreshingElments(display, trTag);
-                document.querySelector('.all-requests-page').style.display = 'block';
-                document.querySelector('.chat-page').style.display = 'none';
-                document.querySelector('.calendar').style.display = 'none';
+                requestPage.style.display = 'block';
+                chat.style.display = 'none';
+                // newestSection.removeChild(newestSectionTable) // take note of this section
+                dashboard.style.display = 'none';
                 display.style.height = `${370}px`;
+                tabs[0].className = 'tabs';
+                tabs[1].className = 'tabs';
+                tabs[2].className = 'tabs';
+                tabs[3].className = 'tabs';
+                tabs[4].className = 'tabs';
+                tabs[5].className = 'tabs active';
+                clickNotification.className = 'tabs';
+                topMessage.className = 'tabs';
                 htmlElements(data);
             }
         });
@@ -116,10 +168,15 @@ window.onclick = () => {
     const board = document.getElementById('board');
     board.style.display = 'none';
     displayNotification.style.display = 'none';
+    clickNotification.className = 'tabs';
+    document.querySelectorAll('.active')[1].className = 'tabs';
 };
 
 clickNotification.onclick = () => {
+    const tabs = document.querySelectorAll('.tabs');
     notifyingEvent();
+    tabs[1].className = 'tabs active';
+    clickNotification.className = 'active';
 };
 
 
@@ -146,20 +203,28 @@ searchButton.onclick = () => {
 
 
 topMessage.onclick = () => {
+    const tabs = document.querySelectorAll('.tabs');
     document.querySelector('.all-requests-page').style.display = 'none';
     document.querySelector('.dashboard-page').style.display = 'none';
     document.querySelector('.chat-page').style.display = 'block';
+    tabs[0].className = 'tabs';
+    tabs[1].className = 'tabs';
+    tabs[2].className = 'tabs';
+    tabs[3].className = 'tabs';
+    tabs[4].className = 'tabs';
+    tabs[5].className = 'tabs';
+    topMessage.className = 'tabs active';
+    chatMessages();
 };
 
 
 getAllRequest().then((result) => {
     const data = result.requests;
-    htmlElements(data);
+    htmlElements(data, 'pending');
 });
 
 const es = new EventSource('/notifications');
 es.addEventListener('myEvent', (event) => {
-    console.log(event.data);
     htmlElements(JSON.parse(event.data), 'notification');
 });
 
@@ -172,3 +237,5 @@ es.addEventListener('myEvent', (event) => {
 //     const samuel = 'The boy is amazing!';
 //     require('./testing.js')(samuel);
 // };
+
+// chat.check()
