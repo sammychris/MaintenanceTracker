@@ -34,6 +34,7 @@
         "no-plusplus": "off",
         "no-param-reassign": "off",
         "class-methods-use-this": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "react/prop-types": "off"
     }
 }
