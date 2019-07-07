@@ -17,7 +17,7 @@ export default {
     },
 
     allByOneUser(req, res) {
-        const { user } = req.body;
+        const { user } = req.headers;
         Request.find({ user })
             .populate('user') // only when you need the user info...
             .exec((err, result) => {

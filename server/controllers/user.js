@@ -7,17 +7,17 @@ dotenv.config();
 export default {
 
     signUp(req, res) {
-        const userSecret = process.env.USER_KEY;
+        // const userSecret = process.env.USER_KEY;
         const { name, email, password } = req.body;
         User.findOne({ email }, (e, result) => {
             if (result) return res.send('user already exist!');
-            jwt.sign(req.body, userSecret, { expiresIn: '90h' }, (err, token) => {
-                if (err) return res.send(err);
-                return new User({ name, email, password }).save((er) => {
-                    if (er) return res.send(er);
-                    return res.status(201).json({ message: 'successfully registered!', token });
-                });
+            // jwt.sign(req.body, userSecret, { expiresIn: '90h' }, (err, token) => {
+            // if (err) return res.send(err);
+            return new User({ name, email, password }).save((er) => {
+                if (er) return res.send(er);
+                return res.status(201).json({ message: 'successfully registered!' });
             });
+            // });
         });
     },
 
@@ -25,15 +25,20 @@ export default {
         const adminSecret = process.env.ADMIN_KEY;
         const userSecret = process.env.USER_KEY;
         const { email, password, admin } = req.body;
-        const secretKey = admin ? adminSecret : userSecret;
+        const scrtKey = admin ? adminSecret : userSecret;
 
-        User.findOne({ email }, (err, result) => {
+        User.findOne({ email }, (err, user) => {
             if (err) return res.send(err);
-            if (!result) return res.send('user does not exist!');
-            if (result.password !== password) return res.send('wrong password');
-            return jwt.sign(req.body, secretKey, { expiresIn: '90h' }, (er, token) => {
+            if (!user) return res.json({ message: 'user does not exist!' });
+            if (user.password !== password) return res.json({ message: 'wrong password' });
+            const payload = {
+                id: user._id,
+                name: user.name,
+                email: user.email,
+            };
+            return jwt.sign(payload, scrtKey, { expiresIn: 'Infinity' }, (er, token) => {
                 if (er) return console.log(er);
-                return res.status(202).json({ message: 'loggedin successfully', token });
+                return res.status(202).json({ message: 'loggedin successfully', token, user });
             });
         });
     },
