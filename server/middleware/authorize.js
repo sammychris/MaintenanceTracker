@@ -9,11 +9,11 @@ export default {
         const token = headers.authorization || headers['x-access-token'] || req.body.token;
         if (token) {
             jwt.verify(token, process.env.USER_KEY, (err) => {
-                if (err) return res.status(403).json({ error: 'Invalid Token' });
+                if (err) return res.status(403).json({ message: 'Invalid Token' });
                 return next();
             });
         } else {
-            res.status(401).json({ error: 'Token not provided' });
+            res.status(401).json({ message: 'Token not provided' });
         }
     },
 
@@ -23,11 +23,11 @@ export default {
         const token = headers.authorization || headers['x-access-token'] || req.body.token;
         if (token) {
             jwt.verify(token, process.env.ADMIN_KEY, (err) => {
-                if (err) return res.status(403).json({ error: 'Invalid Token' });
+                if (err) return res.status(403).json({ message: 'Invalid Token' });
                 return next();
             });
         } else {
-            res.status(401).json({ error: 'Token not provided' });
+            res.status(401).json({ message: 'Token not provided' });
         }
     },
 

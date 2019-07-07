@@ -24,10 +24,10 @@ export default (app) => {
     app.post('/auth/signin', user.signIn);
     // app.put('/users/:id', user.update);
 
-    app.get('/users/requests', request.allByOneUser);
-    app.get('/users/requests/:requestId', /* verifyUser, */ request.oneRequest);
-    app.post('/users/requests', request.create);
-    app.put('/users/requests/:requestId', /* verifyUser, */ request.modify);
+    app.get('/user/requests', verifyUser, request.allByOneUser);
+    app.get('/user/requests/:requestId', verifyUser, request.oneRequest);
+    app.post('/user/requests', request.create);
+    app.put('/user/requests/:requestId', verifyUser, request.modify);
 
     app.get('/requests', /* verifyAdmin, */ request.allRequest);
     // app.put('/requests/:requestId/approve', verifyAdmin, request.approve);
