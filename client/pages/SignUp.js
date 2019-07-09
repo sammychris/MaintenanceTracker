@@ -60,32 +60,48 @@ class SignUp extends React.Component {
   redirectToTarget() {
     console.log(this.props.history);
     console.log(this.props)
-    this.props.history.push(`/dashboard`);
+    this.props.history.push(`user/dashboard`);
   }
 
   render() {
     return (
-      <div>
+      <div id="form-holder">
+        <h1>Sign Up</h1>
+        <p style={{ fontSize: '18px' }}>All fields are required</p>
         <form onSubmit={this.handleSubmit}>
           <label>
-            Name
-            <input type="text" value={this.state.name} name="name" onChange={this.handleChange}/>
+            <div>Name</div>
+            <div>
+              <input
+                type="text"
+                value={this.state.name}
+                name="name"
+                onChange={this.handleChange}
+                placeholder="Eg: Samuel Okanume"
+              />
+            </div>
           </label>
           <label>
-            Email
-            <input type="text" value={this.state.email} name="email" onChange={this.handleChange}/>
+            <div>Email</div>
+            <div>
+              <input type="email" value={this.state.email} name="email" onChange={this.handleChange}/>
+            </div>
           </label>
           <label>
-            Create Password
-            <input type="text" value={this.state.password} name="password" onChange={this.handleChange}/>
+            <div>Create Password</div>
+            <div>
+              <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
+            </div>
           </label>
-          <label >
-            <button type="submit" disabled={!this.validateForm()}> Submit</button>
+          <label>
+            <div>Confirm Password</div>
+            <div>
+              <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
+            </div>
           </label>
+          <button type="submit" disabled={!this.validateForm()}> Submit</button>
         </form>
-          <div>
-          <button onClick={this.redirectToTarget}>Redirect</button>
-         </div>
+        <p style={{ fontSize: '16px' }}>Have an account? <span style={{ color: '#3782A3', fontWeight: 'bold' }}>Log in</span></p>
       </div>
     );
   }
