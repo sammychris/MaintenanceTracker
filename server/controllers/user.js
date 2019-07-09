@@ -36,7 +36,7 @@ export default {
                 name: user.name,
                 email: user.email,
             };
-            return jwt.sign(payload, scrtKey, { expiresIn: 'Infinity' }, (er, token) => {
+            return jwt.sign(payload, scrtKey, { expiresIn: '2 days' }, (er, token) => {
                 if (er) return console.log(er);
                 return res.status(202).json({ message: 'loggedin successfully', token, user });
             });
