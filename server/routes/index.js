@@ -1,8 +1,7 @@
 import { config } from 'dotenv';
 import multer from 'multer';
 import path from 'path';
-import user from '../controllers/user';
-import request from '../controllers/request';
+import { user, request } from '../controllers';
 import auth from '../middleware/authorize';
 
 
@@ -21,7 +20,7 @@ const { verifyUser, verifyAdmin } = auth;
 
 export default (app) => {
     app.post('/auth/signup', user.signUp);
-    app.post('/auth/signin', user.signIn);
+    app.post('/auth/login', user.logIn);
     // app.put('/users/:id', user.update);
 
     app.get('/user/requests', verifyUser, request.allByOneUser);
