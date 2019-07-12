@@ -10,18 +10,18 @@ export default {
         // const userSecret = process.env.USER_KEY;
         const { name, email, password } = req.body;
         User.findOne({ email }, (e, result) => {
-            if (result) return res.send('user already exist!');
+            if (result) return res.json({ message: 'user already exist!' });
             // jwt.sign(req.body, userSecret, { expiresIn: '90h' }, (err, token) => {
             // if (err) return res.send(err);
             return new User({ name, email, password }).save((er) => {
                 if (er) return res.send(er);
-                return res.status(201).json({ message: 'successfully registered!' });
+                return res.status(201).json({ message: 'successfully registered!', success: true });
             });
             // });
         });
     },
 
-    signIn(req, res) {
+    logIn(req, res) {
         const adminSecret = process.env.ADMIN_KEY;
         const userSecret = process.env.USER_KEY;
         const { email, password, admin } = req.body;
@@ -53,10 +53,10 @@ export default {
 
     oneUser(req, res) {
         const { id } = req.params;
-        User.findById(id, (err, result) => {
+        User.findById(id, (err, user) => {
             if (err) return res.send(err);
-            if (!result) return res.status(404).send('page not found');
-            return res.json(result);
+            if (!user) return res.status(404).json({ message: 'page not found', success: false });
+            return res.json({ user, success: true });
         });
     },
 
