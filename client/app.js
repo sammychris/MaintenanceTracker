@@ -6,6 +6,9 @@ import SignIn from './pages/SignIn';
 import UserPage from './pages/UserPage';
 import { PrivateRoute, PublicRoute } from './pages/components';
 import './styling.scss';
+// import './stylesheet/style.css';
+import './stylesheet/w3.css';
+import './fonts';
 
 class App extends React.Component {
   constructor(props) {

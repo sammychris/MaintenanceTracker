@@ -25,6 +25,7 @@ function LogOut() {
 // }
 
 function validateJson(res) {
+  console.log(res);
   if (!res.ok) {
     LogOut();
     location.reload(true);

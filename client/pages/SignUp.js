@@ -1,5 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { signUp } from './services';
 // import PostApi from './middleware/PostApi';
+
+
+// const styling = {
+//   border: '2px solid red',
+// };
 
 
 class SignUp extends React.Component {
@@ -10,29 +17,18 @@ class SignUp extends React.Component {
       name: '',
       email: '',
       password: '',
-      redirect: false,
+      cpassword: '',
+      submit: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   PostApi('/auth/signin', {
-  //     name: 'samuel',
-  //     email: 'ebusamer@gmail.com',
-  //     password: '1232nm334',
-  //   }).then((a) => {
-  //     this.setState({
-  //       page: a.message,
-  //     });
-  //   });
+  // validateForm() {
+  //   const { name, email, password, cpassword } = this.state;
+  //   return name.length > 0 && email.length > 0 && password.length > 0;
   // }
-
-  validateForm() {
-    const { name, email, password } = this.state;
-    return name.length > 0 && email.length > 0 && password.length > 0;
-  }
 
   handleChange(e) {
     const { name, value } = e.target;
@@ -43,24 +39,16 @@ class SignUp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-  }
-
-  // setRedirect = () => {
-  //   this.setState({
-  //     redirect: true
-  //   })
-  // }
-
-  // renderRedirect = () => {
-  //   if (this.state.redirect) {
-  //     return <Redirect to='/' />
-  //   }
-  // }
-
-  redirectToTarget() {
-    console.log(this.props.history);
-    console.log(this.props)
-    this.props.history.push(`user/dashboard`);
+    const {
+      name, email, password, cpassword,
+    } = this.state;
+    signUp(this.props.match.url, { name, email, password })
+      .then((data) => {
+        if (data.success) {
+          this.props.history.push('/auth/login');
+          alert('You can now Login');
+        }
+      });
   }
 
   render() {
@@ -78,30 +66,54 @@ class SignUp extends React.Component {
                 name="name"
                 onChange={this.handleChange}
                 placeholder="Eg: Samuel Okanume"
+                required
               />
             </div>
           </label>
           <label>
             <div>Email</div>
             <div>
-              <input type="email" value={this.state.email} name="email" onChange={this.handleChange}/>
+              <input
+                type="email"
+                value={this.state.email}
+                name="email"
+                onChange={this.handleChange}
+                required
+              />
             </div>
           </label>
           <label>
             <div>Create Password</div>
             <div>
-              <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
+              <input
+                type="password"
+                value={this.state.password}
+                name="password"
+                onChange={this.handleChange}
+                required
+              />
             </div>
           </label>
           <label>
             <div>Confirm Password</div>
             <div>
-              <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
+              <input
+                type="password"
+                value={this.state.cpassword}
+                name="cpassword"
+                onChange={this.handleChange}
+                required
+              />
             </div>
           </label>
-          <button type="submit" disabled={!this.validateForm()}> Submit</button>
+          <button type="submit"> Submit</button>
         </form>
-        <p style={{ fontSize: '16px' }}>Have an account? <span style={{ color: '#3782A3', fontWeight: 'bold' }}>Log in</span></p>
+        <p style={{ fontSize: '16px' }}>
+          Have an account?
+          <Link to="/auth/login">
+            <span style={{ color: '#3782A3', fontWeight: 'bold' }}> Log in</span>
+          </Link>
+        </p>
       </div>
     );
   }
