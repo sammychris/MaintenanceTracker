@@ -4,12 +4,6 @@
 	box-sizing: border-box;
 }
 
-body{
-	text-align: center;
-	background:  #1E1E23FF;
-}
-
-
 
 h1, h2, h3 {
 	text-align: center;
@@ -43,15 +37,6 @@ label{
 }
 /* rgba(33, 150, 243, 0.2)*/
 
-main {
-	width: 80%; 
-	margin: 30px auto; 
-	background: #fff;
-	border-radius: 20px; 	
-	font-size:13px;
-	padding: 10px;
-    min-height: 600px;
-}
 
 .signupform {
 	max-width: 500px;
