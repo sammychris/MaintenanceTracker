@@ -9,7 +9,7 @@ const HomePage = () => {
         <div className="nav-section">
           <nav>
             <span>
-              <Link to="/auth/signin">signin</Link>
+              <Link to="/auth/login">login</Link>
             </span>
             <span>
               <Link to="/auth/signup">signup</Link>
