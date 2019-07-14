@@ -1,0 +1,1590 @@
+/* user's page */
+
+position: relative;
+width: 1349px;
+height: 700px;
+
+
+
+/* body */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+
+
+/* body */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #D0D0D0;
+
+
+/* main */
+
+position: absolute;
+left: 12.9%;
+right: 12.97%;
+top: 15.14%;
+bottom: 0%;
+
+background: #FFFCFC;
+
+
+/* header */
+
+position: absolute;
+left: 12.9%;
+right: 12.97%;
+top: 7.14%;
+bottom: 84.57%;
+
+background: #3782A3;
+
+
+/* Ellipse */
+
+position: absolute;
+left: 13.19%;
+right: 83.17%;
+top: 7.57%;
+bottom: 85.57%;
+
+background: #C4C4C4;
+
+
+/* logo */
+
+position: absolute;
+left: 13.94%;
+right: 83.99%;
+top: 9.43%;
+bottom: 88.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #000000;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+left: 15.94%;
+right: 65.6%;
+top: 22.57%;
+bottom: 7%;
+
+
+
+/* Repair */
+
+position: absolute;
+left: 75.76%;
+right: 21.5%;
+top: 22.29%;
+bottom: 75.57%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #000000;
+
+
+
+/* Type: */
+
+position: absolute;
+left: 63.9%;
+right: 33.51%;
+top: 21.29%;
+bottom: 75.71%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #000000;
+
+
+
+/* Maintenance */
+
+position: absolute;
+left: 68.05%;
+right: 26.32%;
+top: 22.14%;
+bottom: 75.71%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #000000;
+
+
+
+/* Maintenance Tracker */
+
+position: absolute;
+left: 17.79%;
+right: 65.6%;
+top: 8.71%;
+bottom: 87.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 28px;
+
+color: #FFFFFF;
+
+
+
+/* requests */
+
+position: absolute;
+left: 39.14%;
+right: 16.98%;
+top: 26.29%;
+bottom: 7%;
+
+background: rgba(45, 113, 202, 0.23);
+
+
+/* left option tab */
+
+position: absolute;
+left: 15.34%;
+right: 65.01%;
+top: 41.71%;
+bottom: 28.86%;
+
+
+
+/* Pending Request tab */
+
+position: absolute;
+left: 17.79%;
+right: 67.09%;
+top: 51.29%;
+bottom: 46%;
+
+
+
+/* Pending Requests */
+
+position: absolute;
+left: 17.79%;
+right: 72.65%;
+top: 51.29%;
+bottom: 46%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #323232;
+
+
+
+/* 5 */
+
+position: absolute;
+left: 32.17%;
+right: 67.09%;
+top: 51.29%;
+bottom: 46%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #FF9600;
+
+
+
+/* Rejected Request tab */
+
+position: absolute;
+left: 17.87%;
+right: 65.53%;
+top: 62.29%;
+bottom: 34.29%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 31.58%;
+right: 65.53%;
+top: 62.29%;
+bottom: 34.29%;
+
+border-radius: 2px;
+
+
+/* 13 */
+
+position: absolute;
+left: 32.17%;
+right: 66.49%;
+top: 62.57%;
+bottom: 34.71%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #FF0202;
+
+
+
+/* Rejected Requests */
+
+position: absolute;
+left: 17.87%;
+right: 72.28%;
+top: 62.29%;
+bottom: 35%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #323232;
+
+
+
+/* Resolved REquest tab */
+
+position: absolute;
+left: 17.79%;
+right: 66.42%;
+top: 68.43%;
+bottom: 28.86%;
+
+
+
+/* Resolved Requests */
+
+position: absolute;
+left: 17.79%;
+right: 72.13%;
+top: 68.43%;
+bottom: 28.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #323232;
+
+
+
+/* 37 */
+
+position: absolute;
+left: 32.17%;
+right: 66.42%;
+top: 68.43%;
+bottom: 28.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #27873F;
+
+
+
+/* All Requests */
+
+position: absolute;
+left: 15.34%;
+right: 65.01%;
+top: 41.71%;
+bottom: 51.71%;
+
+
+
+/* Rectangle 6 */
+
+position: absolute;
+left: 15.34%;
+right: 65.01%;
+top: 41.71%;
+bottom: 51.71%;
+
+background: #CFDCF0;
+border-radius: 2px;
+
+
+/* All Requests */
+
+position: absolute;
+left: 17.79%;
+right: 75.61%;
+top: 43.71%;
+bottom: 53.57%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Request header */
+
+position: absolute;
+left: 39.14%;
+right: 16.98%;
+top: 26.29%;
+bottom: 67%;
+
+background: #3782A3;
+
+
+/* Req Id */
+
+position: absolute;
+left: 67.53%;
+right: 28.61%;
+top: 28.43%;
+bottom: 68.57%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+/* identical to box height */
+
+color: #FFFCFC;
+
+
+
+/* Group */
+
+position: absolute;
+left: 18.24%;
+right: 71.24%;
+top: 83.29%;
+bottom: 9.43%;
+
+
+
+/* Line */
+
+position: absolute;
+left: 18.38%;
+right: 76.43%;
+top: 85.37%;
+bottom: 14.63%;
+
+border: 1px solid #2D71CA;
+transform: rotate(-0.2deg);
+
+
+/* Chat Admin */
+
+position: absolute;
+left: 18.24%;
+right: 76.35%;
+top: 83.29%;
+bottom: 14.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #295F76;
+
+
+
+/* you can chat with our Admin, in case you’re having an issues. */
+
+position: absolute;
+left: 18.38%;
+right: 71.24%;
+top: 87.14%;
+bottom: 9.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 10px;
+line-height: 12px;
+
+color: #949494;
+
+
+
+/* reject tab */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 58.29%;
+bottom: 32.86%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 58.29%;
+bottom: 32.86%;
+
+background: #FAE5E4;
+
+
+/* 22/11/2018 */
+
+position: absolute;
+left: 41.07%;
+right: 52.56%;
+top: 61.43%;
+bottom: 35.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* 23432376 */
+
+position: absolute;
+left: 67.53%;
+right: 27.13%;
+top: 61.43%;
+bottom: 35.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Group */
+
+position: absolute;
+left: 75.54%;
+right: 19.27%;
+top: 59.57%;
+bottom: 36.14%;
+
+
+
+/* Rejected */
+
+position: absolute;
+left: 75.54%;
+right: 20.39%;
+top: 59.57%;
+bottom: 38.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #FF0202;
+
+
+
+/* Could not resolve */
+
+position: absolute;
+left: 75.54%;
+right: 19.27%;
+top: 62.29%;
+bottom: 36.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #7D7A7A;
+
+
+
+/* Delete */
+
+position: absolute;
+width: 26px;
+height: 11px;
+left: 1036px;
+top: 451px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FF0202;
+
+
+
+/* Delete massage */
+
+position: absolute;
+width: 193px;
+height: 45px;
+left: 685px;
+top: 417px;
+
+
+
+/* I am having issues logging in m... */
+
+position: absolute;
+left: 50.85%;
+right: 34.91%;
+top: 59.57%;
+bottom: 38.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #000000;
+
+
+
+/* Reason because this kind of request can not be resolved rigth now, we are... */
+
+position: absolute;
+width: 189px;
+height: 26px;
+left: 685px;
+top: 436px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 11px;
+line-height: 13px;
+
+color: #525252;
+
+
+
+/* resolve tab */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 67.86%;
+bottom: 24.57%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 67.86%;
+bottom: 24.57%;
+
+background: #FFFFFF;
+
+
+/* I can’t signup, don’t know what ... */
+
+position: absolute;
+left: 50.85%;
+right: 35.06%;
+top: 70.57%;
+bottom: 27.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #A6A6A6;
+
+
+
+/* 22/11/2018 */
+
+position: absolute;
+left: 41.07%;
+right: 52.56%;
+top: 70.29%;
+bottom: 27%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #A6A6A6;
+
+
+
+/* 23432376 */
+
+position: absolute;
+left: 67.53%;
+right: 27.13%;
+top: 70.29%;
+bottom: 27%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #A6A6A6;
+
+
+
+/* Delete */
+
+position: absolute;
+width: 26px;
+height: 11px;
+left: 1037px;
+top: 514px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FF0202;
+
+
+
+/* Group */
+
+position: absolute;
+left: 74.87%;
+right: 19.5%;
+top: 68.71%;
+bottom: 26.86%;
+
+
+
+/* Resolved */
+
+position: absolute;
+left: 75.54%;
+right: 20.24%;
+top: 68.86%;
+bottom: 28.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #27873F;
+
+
+
+/* Finally resolved */
+
+position: absolute;
+left: 75.54%;
+right: 19.87%;
+top: 71.57%;
+bottom: 26.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #7D7A7A;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 74.87%;
+right: 19.5%;
+top: 68.71%;
+bottom: 28.57%;
+
+background: rgba(39, 135, 63, 0.08);
+
+
+/* approved1 tab */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 41.71%;
+bottom: 50.71%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 41.71%;
+bottom: 50.71%;
+
+background: #FFFBFB;
+
+
+/* My site is shutting down for the ... */
+
+position: absolute;
+left: 50.85%;
+right: 34.69%;
+top: 44.43%;
+bottom: 53.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #000000;
+
+
+
+/* 22/11/2018 */
+
+position: absolute;
+left: 41.07%;
+right: 52.56%;
+top: 44.14%;
+bottom: 53.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* 23432376 */
+
+position: absolute;
+left: 67.53%;
+right: 27.13%;
+top: 44.14%;
+bottom: 53.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Group */
+
+position: absolute;
+left: 74.87%;
+right: 19.42%;
+top: 43.29%;
+bottom: 52.43%;
+
+
+
+/* 3 days to resolve */
+
+position: absolute;
+left: 75.54%;
+right: 19.42%;
+top: 46%;
+bottom: 52.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #7D7A7A;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 74.87%;
+right: 19.5%;
+top: 43.29%;
+bottom: 54%;
+
+background: rgba(45, 113, 202, 0.06);
+
+
+/* approved */
+
+position: absolute;
+left: 75.54%;
+right: 20.01%;
+top: 43.29%;
+bottom: 54.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #2D71CA;
+
+
+
+/* approved tab */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 50%;
+bottom: 42.43%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 50%;
+bottom: 42.43%;
+
+background: #FFFBFB;
+
+
+/* Had a problem with my power .... */
+
+position: absolute;
+left: 50.85%;
+right: 34.84%;
+top: 52.71%;
+bottom: 45.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #000000;
+
+
+
+/* 22/11/2018 */
+
+position: absolute;
+left: 41.07%;
+right: 52.56%;
+top: 52.43%;
+bottom: 44.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* 23432376 */
+
+position: absolute;
+left: 67.53%;
+right: 27.13%;
+top: 52.43%;
+bottom: 44.86%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 75.76%;
+right: 18.61%;
+top: 51.57%;
+bottom: 45.71%;
+
+background: #F2F3F8;
+
+
+/* Group */
+
+position: absolute;
+width: 72px;
+height: 30px;
+left: 1018px;
+top: 361px;
+
+
+
+/* 9 hours to resolve */
+
+position: absolute;
+left: 75.46%;
+right: 19.2%;
+top: 54.29%;
+bottom: 44.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #7D7A7A;
+
+
+
+/* Approved */
+
+position: absolute;
+left: 75.54%;
+right: 20.01%;
+top: 51.57%;
+bottom: 46.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #2D71CA;
+
+
+
+/* Pending tab */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 33.57%;
+bottom: 58.86%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 39.51%;
+right: 17.42%;
+top: 33.57%;
+bottom: 58.86%;
+
+background: #FFFBFB;
+
+
+/* Delete */
+
+position: absolute;
+width: 26px;
+height: 11px;
+left: 1049px;
+top: 275px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FF0202;
+
+
+
+/* Edit */
+
+position: absolute;
+width: 16px;
+height: 11px;
+left: 1021px;
+top: 275px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #FF9600;
+
+
+
+/* I Need help with my car, it’s not... */
+
+position: absolute;
+left: 50.85%;
+right: 35.14%;
+top: 36.29%;
+bottom: 61.57%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 13px;
+line-height: 15px;
+
+color: #000000;
+
+
+
+/* 22/11/2018 */
+
+position: absolute;
+left: 41.07%;
+right: 52.56%;
+top: 36%;
+bottom: 61.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* 23432376 */
+
+position: absolute;
+left: 67.53%;
+right: 27.13%;
+top: 36%;
+bottom: 61.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Group */
+
+position: absolute;
+left: 74.87%;
+right: 20.09%;
+top: 34.43%;
+bottom: 61.14%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 74.87%;
+right: 20.09%;
+top: 34.43%;
+bottom: 62.86%;
+
+background: rgba(216, 77, 64, 0.04);
+
+
+/* Pending */
+
+position: absolute;
+left: 75.54%;
+right: 20.68%;
+top: 34.57%;
+bottom: 63.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #FF9600;
+
+
+
+/* Still in review */
+
+position: absolute;
+left: 75.54%;
+right: 20.53%;
+top: 37.29%;
+bottom: 61.14%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 9px;
+line-height: 11px;
+/* identical to box height */
+
+color: #A6A6A6;
+
+
+
+/* Date */
+
+position: absolute;
+left: 41.14%;
+right: 56.04%;
+top: 28.57%;
+bottom: 68.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Description */
+
+position: absolute;
+left: 50.78%;
+right: 42.33%;
+top: 28.57%;
+bottom: 68.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Status */
+
+position: absolute;
+left: 75.54%;
+right: 20.53%;
+top: 28.57%;
+bottom: 68.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Group 3 */
+
+position: absolute;
+left: 14.97%;
+right: 65.38%;
+top: 21.43%;
+bottom: 63%;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 14.97%;
+right: 65.38%;
+top: 21.43%;
+bottom: 63%;
+
+background: #ECF1F8;
+
+
+/* Ellipse */
+
+position: absolute;
+left: 22.61%;
+right: 73.02%;
+top: 26.57%;
+bottom: 65.29%;
+
+background: #525252;
+
+
+/* Hi Emmanuel */
+
+position: absolute;
+left: 20.76%;
+right: 71.24%;
+top: 22.71%;
+bottom: 74.29%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 18px;
+line-height: 21px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* Ellipse */
+
+position: absolute;
+left: 79.47%;
+right: 16.16%;
+top: 7.14%;
+bottom: 84.71%;
+
+background: #FFFFFF;
+
+
+/* Polygon */
+
+position: absolute;
+left: 85.98%;
+right: 12.76%;
+top: 12%;
+bottom: 86.43%;
+
+background: #FFFDFD;
+transform: rotate(-179.4deg);
+
+
+/* Group 6 */
+
+position: absolute;
+width: 120px;
+height: 37px;
+left: 933px;
+top: 60px;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 69.16%;
+right: 21.94%;
+top: 8.57%;
+bottom: 86.14%;
+
+background: #225064;
+opacity: 0.7;
+border-radius: 100px;
+
+
+/* Group 5 */
+
+position: absolute;
+width: 104px;
+height: 16px;
+left: 941px;
+top: 70px;
+
+
+
+/* Group 4 */
+
+position: absolute;
+left: 69.76%;
+right: 28.98%;
+top: 10%;
+bottom: 87.71%;
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+left: 70.3%;
+right: 29.46%;
+top: 10%;
+bottom: 87.71%;
+
+background: #FFF8F8;
+
+
+/* Rectangle 3 */
+
+position: absolute;
+left: 69.76%;
+right: 28.98%;
+top: 10.91%;
+bottom: 88.6%;
+
+background: #FFFFFF;
+
+
+/* New Request */
+
+position: absolute;
+left: 71.31%;
+right: 22.54%;
+top: 10%;
+bottom: 87.71%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+
+color: #FFFFFF;
+
+
+
+/* Rectangle */
+
+position: absolute;
+left: 31.58%;
+right: 65.97%;
+top: 43.86%;
+bottom: 53.43%;
+
+background: #FAFAFA;
+border-radius: 5px;
+
+
+/* approve request left */
+
+position: absolute;
+width: 219px;
+height: 19px;
+left: 240px;
+top: 398px;
+
+
+
+/* Group 3 */
+
+position: absolute;
+left: 17.79%;
+right: 71.91%;
+top: 56.86%;
+bottom: 40.43%;
+
+
+
+/* Approved Requests */
+
+position: absolute;
+left: 17.79%;
+right: 71.91%;
+top: 56.86%;
+bottom: 40.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #323232;
+
+
+
+/* 20 */
+
+position: absolute;
+left: 32.17%;
+right: 65.97%;
+top: 56.86%;
+bottom: 41%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 19px;
+
+color: #2D71CA;
+
+border-radius: 5px;
+
+
+/* 75 */
+
+position: absolute;
+left: 32.1%;
+right: 66.49%;
+top: 43.86%;
+bottom: 53.43%;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 16px;
+line-height: 19px;
+/* identical to box height */
+
+color: #000000;
+
+
+
+/* notification */
+
+position: absolute;
+width: 36px;
+height: 34px;
+left: 874px;
+top: 61px;
+
+
+
+/* Ellipse */
+
+position: absolute;
+left: 66.46%;
+right: 32.54%;
+top: 8.71%;
+bottom: 89.14%;
+
+background: #D84D40;
+
+
+/* 5 */
+
+position: absolute;
+width: 5.4px;
+height: 12px;
+left: 900.1px;
+top: 63px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: bold;
+font-size: 10px;
+line-height: 12px;
+/* identical to box height */
+
+color: #FFFFFF;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 66.79%;
+right: 31.21%;
+top: 9.29%;
+bottom: 86.43%;
+
+background: #FFFFFF;
+border: 0.997933px solid #FFFFFF;
+box-sizing: border-box;
+transform: matrix(-1, 0, 0, 1, 0, 0);
