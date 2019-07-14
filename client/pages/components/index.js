@@ -1,5 +1,8 @@
-import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+import Header from './Header';
+import AsideNav from './AsideNav';
+import RequestList from './RequestList';
 
 // export const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route {...rest} render={props => (
@@ -9,21 +12,10 @@ import { Route, Redirect } from 'react-router-dom';
 //   )} />
 // );
 
-
-const PrivateRoute = (props) => {
-  return (localStorage.getItem('user'))
-    ? (<Route path={props.path} component={props.component} />)
-    : (<Redirect to='/'/>);
-};
-
-
-const PublicRoute = (props) => {
-  return !(localStorage.getItem('user'))
-    ? (<Route path={props.path} component={props.component} />)
-    : (<Redirect to='/user/dashboard'/>);
-};
-
 export {
   PrivateRoute,
   PublicRoute,
+  Header,
+  AsideNav,
+  RequestList,
 };
