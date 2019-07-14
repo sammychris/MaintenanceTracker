@@ -1,40 +1,40 @@
 import authHeader from '../helpers';
 
-function LogOut() {
+
+function logOut() {
   // remove user from local storage to log user out
   localStorage.removeItem('user');
   localStorage.removeItem('token');
 }
 
-// function handleResponse(response) {
-//   return response.text().then((text) => {
-//     const data = text && JSON.parse(text);
-//     if (!response.ok) {
-//       if (response.status === 401) {
-//       // auto logout if 401 response returned from api
-//         signOut();
-//         location.reload(true);
-//       }
-
-//       const error = (data && data.message) || response.statusText;
-//       return Promise.reject(error);
-//     }
-
-//     return data;
-//   });
-// }
 
 function validateJson(res) {
   console.log(res);
   if (!res.ok) {
-    LogOut();
+    logOut();
     location.reload(true);
     return Promise.reject(res.statusText);
   }
   return res.json();
 }
 
-function LogIn(url, data) {
+
+function signUp(url, data) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  };
+  return fetch(url, requestOptions)
+    .then(validateJson)
+    .then((res) => {
+      alert(res.message);
+      return res;
+    });
+}
+
+
+function logIn(url, data) {
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -44,17 +44,17 @@ function LogIn(url, data) {
   return fetch(url, requestOptions)
     .then(validateJson)
     .then((res) => {
-      // login successful if there's a user in the response
-      if (res) {
+      if (res.token) {
         localStorage.setItem('token', res.token);
         localStorage.setItem('user', JSON.stringify(res.user));
       }
+      alert(res.message);
       return res;
     });
 }
 
 
-function GetAllRequests(url) {
+function getAllRequests(url) {
   const { _id } = JSON.parse(localStorage.getItem('user'));
   const requestOptions = {
     method: 'GET',
@@ -65,7 +65,8 @@ function GetAllRequests(url) {
 }
 
 export {
-  LogIn,
-  LogOut,
-  GetAllRequests,
+  logIn,
+  signUp,
+  logOut,
+  getAllRequests,
 };
