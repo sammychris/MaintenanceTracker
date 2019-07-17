@@ -42,7 +42,7 @@ class LogIn extends React.Component {
   }
 
   loggedIn() {
-    const { message, token } = this.state;
+    const { token } = this.state;
     if (token) {
       this.props.history.push('/user/dashboard');
     }
