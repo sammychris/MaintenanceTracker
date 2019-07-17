@@ -8,24 +8,28 @@ function logOut() {
 }
 
 
+const postRequestOptions = (data) => {
+  return {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  };
+};
+
+
 function validateJson(res) {
   console.log(res);
-  if (!res.ok) {
-    logOut();
-    location.reload(true);
-    return Promise.reject(res.statusText);
-  }
+  // if (!res.ok) {
+  //   logOut();
+  //   location.reload(true);
+  //   return Promise.reject(res.statusText);
+  // }
   return res.json();
 }
 
 
 function signUp(url, data) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  };
-  return fetch(url, requestOptions)
+  return fetch(url, postRequestOptions(data))
     .then(validateJson)
     .then((res) => {
       alert(res.message);
@@ -35,13 +39,7 @@ function signUp(url, data) {
 
 
 function logIn(url, data) {
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  };
-
-  return fetch(url, requestOptions)
+  return fetch(url, postRequestOptions(data))
     .then(validateJson)
     .then((res) => {
       if (res.token) {
@@ -64,9 +62,16 @@ function getAllRequests(url) {
   return fetch(url, requestOptions).then(validateJson);
 }
 
+
+function postRequest(url, data) {
+  return fetch(url, postRequestOptions(data))
+    .then(validateJson);
+}
+
 export {
   logIn,
   signUp,
   logOut,
   getAllRequests,
+  postRequest,
 };
