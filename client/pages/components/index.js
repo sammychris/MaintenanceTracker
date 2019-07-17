@@ -3,6 +3,7 @@ import PublicRoute from './PublicRoute';
 import Header from './Header';
 import AsideNav from './AsideNav';
 import RequestList from './RequestList';
+import NewRequestForm from './NewRequestForm';
 
 // export const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route {...rest} render={props => (
@@ -18,4 +19,5 @@ export {
   Header,
   AsideNav,
   RequestList,
+  NewRequestForm,
 };

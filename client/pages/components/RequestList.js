@@ -26,13 +26,13 @@ const RequestList = (props) => {
       </div>
     );
   };
-  const reqStyle = { margin: '5px 0' };
+
   const dateStyle = { fontSize: '12px' };
 
   return props.requests.map((item, index) => {
     const date = new Date(item.date).toDateString();
     return (
-      <div className="reqs" key={index} style={reqStyle}>
+      <div className="reqs" key={index}>
         <div className="date" style={dateStyle}>{date}</div>
         <div className="desc">{item.description}</div>
         <div className="reqid">{item.reqId}</div>
