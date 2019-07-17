@@ -1,7 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { getAllRequests, logOut } from './services';
-import { Header, AsideNav, RequestList } from './components';
+import { getAllRequests } from './services';
+import {
+  Header, AsideNav, RequestList, NewRequestForm,
+} from './components';
+
+const SearchTag = () => {
+  return (
+    <div id="search">
+      <div id="box">
+        <span>Type:</span>
+        <span className="item">Repair</span>
+        <span className="item">Maintenance</span>
+      </div>
+    </div>
+  );
+};
 
 
 class UserPage extends React.Component {
@@ -10,7 +23,15 @@ class UserPage extends React.Component {
     this.state = {
       user: {},
       requests: [],
+      pending: [],
+      approved: [],
+      rejected: [],
+      resolved: [],
+      showRequests: [],
+      newReq: false,
     };
+    this.makeNewReq = this.makeNewReq.bind(this);
+    this.filterRequests = this.filterRequests.bind(this);
   }
 
   componentDidMount() {
@@ -18,20 +39,64 @@ class UserPage extends React.Component {
       user: JSON.parse(localStorage.getItem('user')),
     });
     getAllRequests('/user/requests').then((reqs) => {
-      console.log(reqs);
-      this.setState({ requests: reqs });
+      const revReq = reqs.reverse();
+      this.setState({
+        requests: revReq,
+        pending: revReq.filter(e => e.status === 'pending'),
+        approved: revReq.filter(e => e.status === 'approved'),
+        rejected: revReq.filter(e => e.status === 'rejected'),
+        resolved: revReq.filter(e => e.status === 'resolved'),
+        showRequests: revReq,
+      });
+    });
+  }
+
+  filterRequests(tagName) {
+    if (tagName === 'profile' || tagName === 'message') return;
+    this.setState({ showRequests: this.state[tagName] });
+  }
+
+  makeNewReq() {
+    const { newReq } = this.state;
+    const htm = document.getElementsByTagName('html')[0];
+    htm.style.overflowY = newReq ? 'scroll' : 'hidden';
+    this.setState({ newReq: !newReq });
+
+    getAllRequests('/user/requests').then((reqs) => {
+      const revReq = reqs.reverse();
+      this.setState({
+        requests: revReq,
+        pending: revReq.filter(e => e.status === 'pending'),
+        approved: revReq.filter(e => e.status === 'approved'),
+        rejected: revReq.filter(e => e.status === 'rejected'),
+        resolved: revReq.filter(e => e.status === 'resolved'),
+      });
     });
   }
 
   render() {
+    const {
+      requests, pending, approved, rejected, resolved, showRequests,
+    } = this.state;
+
     return (
       <div className="container">
-        <Header /> { /* Header Components */ }
+        {this.state.newReq && <NewRequestForm makeNewReq={this.makeNewReq} />}
+        <Header // Header Components
+          makeNewReq={this.makeNewReq}
+        />
         <main className="contents">
           <div className="content">
-            <AsideNav /> { /* Left Navigation Components */ }
+            <AsideNav // Left Navigation Components
+              requestsL={requests.length}
+              pendingL={pending.length}
+              approvedL={approved.length}
+              rejectedL={rejected.length}
+              resolvedL={resolved.length}
+              filterRequests={this.filterRequests}
+            />
             <div id="main-content">
-              <div>navigations</div>
+              <SearchTag />
               <div id="requests">
                 <div id="req-header" className="list">
                   <div className="date">Date</div>
@@ -53,16 +118,12 @@ class UserPage extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <RequestList requests={this.state.requests} /> { /* requests Components */ }
+                  <RequestList requests={ showRequests } /> { /* requests Components */ }
                 </div>
               </div>
             </div>
           </div>
         </main>
-        <footer>
-          <h2>Make sure you dont forget to register</h2>
-          <Link to="/"><button onClick={logOut}>logout</button></Link>
-        </footer>
       </div>
     );
   }
