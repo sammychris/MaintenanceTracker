@@ -31,6 +31,7 @@ class UserPage extends React.Component {
       newReq: false,
     };
     this.makeNewReq = this.makeNewReq.bind(this);
+    this.newBtnReq = this.newBtnReq.bind(this);
     this.filterRequests = this.filterRequests.bind(this);
   }
 
@@ -51,16 +52,21 @@ class UserPage extends React.Component {
     });
   }
 
-  filterRequests(tagName) {
-    if (tagName === 'profile' || tagName === 'message') return;
-    this.setState({ showRequests: this.state[tagName] });
+  filterRequests(cName) {
+    if (cName === 'profile' || cName === 'message') return;
+    this.setState({ showRequests: this.state[cName] });
   }
 
-  makeNewReq() {
+  newBtnReq() {
     const { newReq } = this.state;
     const htm = document.getElementsByTagName('html')[0];
     htm.style.overflowY = newReq ? 'scroll' : 'hidden';
     this.setState({ newReq: !newReq });
+  }
+
+  makeNewReq() {
+    const cName = document.getElementById('active').className;
+    this.newBtnReq();
 
     getAllRequests('/user/requests').then((reqs) => {
       const revReq = reqs.reverse();
@@ -71,6 +77,7 @@ class UserPage extends React.Component {
         rejected: revReq.filter(e => e.status === 'rejected'),
         resolved: revReq.filter(e => e.status === 'resolved'),
       });
+      this.filterRequests(cName);
     });
   }
 
@@ -81,13 +88,19 @@ class UserPage extends React.Component {
 
     return (
       <div className="container">
-        {this.state.newReq && <NewRequestForm makeNewReq={this.makeNewReq} />}
-        <Header // Header Components
-          makeNewReq={this.makeNewReq}
+        {
+          this.state.newReq
+          && <NewRequestForm // New Request Form Component
+            makeNewReq={this.makeNewReq}
+            newBtnReq={this.newBtnReq}
+          />
+        }
+        <Header // Header Component
+          newBtnReq={this.newBtnReq}
         />
         <main className="contents">
           <div className="content">
-            <AsideNav // Left Navigation Components
+            <AsideNav // Left Navigation Component
               requestsL={requests.length}
               pendingL={pending.length}
               approvedL={approved.length}
@@ -99,25 +112,24 @@ class UserPage extends React.Component {
               <SearchTag />
               <div id="requests">
                 <div id="req-header" className="list">
-                  <div className="date">Date</div>
-                  <div className="desc">Description</div>
-                  <div className="reqid">Req Id</div>
-                  <div className="status">Status</div>
+                  <div className="date">
+                    <i className="fas fa-calendar"></i>
+                    Date
+                  </div>
+                  <div className="desc">
+                    <i className="fas fa-info-circle"></i>
+                    Description
+                  </div>
+                  <div className="reqid">
+                    <i className="fas fa-passport"></i>
+                    Req Id
+                  </div>
+                  <div className="status">
+                    <i className="fas fa-map-marker-alt"></i>
+                    Status
+                  </div>
                 </div>
                 <div id="req-content">
-                  <div className="reqs">
-                    <div className="date">10/20/2019</div>
-                    <div className="desc">My site is shutting down for the ...</div>
-                    <div className="reqid">405839</div>
-                    <div className="status">
-                      <div className="text">Pending</div>
-                      <div className="time">Still in review</div>
-                      <div className="options">
-                        <div className="edit">Edit</div>
-                        <div className="del">Delete</div>
-                      </div>
-                    </div>
-                  </div>
                   <RequestList requests={ showRequests } /> { /* requests Components */ }
                 </div>
               </div>
