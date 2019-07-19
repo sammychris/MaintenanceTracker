@@ -50,7 +50,7 @@ class NewRequestForm extends React.Component {
   render() {
     return (
       <div>
-        <div id="box" style={box} onClick={this.props.makeNewReq}>
+        <div id="box" style={box} onClick={this.props.newBtnReq}>
         </div>
         <div id="form-holder" style={style}>
           <form onSubmit={this.handleSubmit}>
