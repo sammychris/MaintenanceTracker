@@ -1,5 +1,5 @@
 import React from 'react';
-import { getAllRequests } from './services';
+import { getAllRequests, deleteRequest } from './services';
 import {
   Header, AsideNav, RequestList, NewRequestForm,
 } from './components';
@@ -32,11 +32,11 @@ class UserPage extends React.Component {
       updateReq: false,
       currentReq: {},
     };
-    this.makeNewReq = this.makeNewReq.bind(this);
+    this.refreshRequests = this.refreshRequests.bind(this);
     this.showReqForm = this.showReqForm.bind(this);
     this.filterRequests = this.filterRequests.bind(this);
     this.editRequest = this.editRequest.bind(this);
-    this.deleteRequest = this.deleteRequest.bind(this);
+    this.deleteReq = this.deleteReq.bind(this);
   }
 
   filterRequests(cName) {
@@ -66,9 +66,9 @@ class UserPage extends React.Component {
     });
   }
 
-  makeNewReq() {
+  refreshRequests() {
     const cName = document.getElementById('active').className;
-    getAllRequests('/user/requests').then((reqs) => {
+    setTimeout(() => getAllRequests('/user/requests').then((reqs) => {
       const revReq = reqs.reverse();
       this.setState({
         requests: revReq,
@@ -78,13 +78,12 @@ class UserPage extends React.Component {
         resolved: revReq.filter(e => e.status === 'resolved'),
       });
       this.filterRequests(cName);
-    });
-    this.showReqForm();
+    }), 1000);
   }
 
   editRequest(id, type, description) {
     return () => {
-      this.showReqForm();
+      this.showReqForm(); // This turns On the show request form....
       this.setState({
         updateReq: true,
         currentReq: { id, type, description },
@@ -92,9 +91,15 @@ class UserPage extends React.Component {
     };
   }
 
-  deleteRequest(id) {
+  deleteReq(id) {
     return () => {
-      alert(id);
+      if (confirm('Are you sure you want to delete this request')) {
+        deleteRequest(`/user/requests/${id}`)
+          .then((res) => {
+            this.props.notification(res.message, res.success); // handles the notification message
+          });
+        this.refreshRequests(); // This refreshes the requests after the update
+      }
     };
   }
 
@@ -109,7 +114,7 @@ class UserPage extends React.Component {
           showForm
           && <NewRequestForm // New Request Form Component
             notification={this.props.notification}
-            makeNewReq={this.makeNewReq}
+            refreshRequests={this.refreshRequests}
             showReqForm={this.showReqForm}
             updateReq={updateReq}
             currentReq={currentReq}
@@ -164,7 +169,7 @@ class UserPage extends React.Component {
                     : <RequestList /* requests Components */
                       requests={ showRequests }
                       editReq={ this.editRequest }
-                      deleteReq={ this.deleteRequest }
+                      deleteReq={ this.deleteReq }
                     />
                   }
                 </div>
