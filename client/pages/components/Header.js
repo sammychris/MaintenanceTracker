@@ -16,7 +16,7 @@ const Header = (props) => {
           <i className="far fa-bell"></i>
           <p>Notification</p>
         </div>
-        <div id="new-req" onClick={props.newBtnReq} className="header-nav">
+        <div id="new-req" onClick={props.showReqForm} className="header-nav">
           <i className="fas fa-plus"></i>
           <p>New Request</p>
         </div>

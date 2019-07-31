@@ -4,6 +4,7 @@ import Header from './Header';
 import AsideNav from './AsideNav';
 import RequestList from './RequestList';
 import NewRequestForm from './NewRequestForm';
+import PopUpBox from './PopUpBox';
 
 // export const PrivateRoute = ({ component: Component, ...rest }) => (
 //   <Route {...rest} render={props => (
@@ -20,4 +21,5 @@ export {
   AsideNav,
   RequestList,
   NewRequestForm,
+  PopUpBox,
 };
