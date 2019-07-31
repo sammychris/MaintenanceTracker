@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { logIn } from './services';
 
-
 class LogIn extends React.Component {
   constructor(props) {
     super(props);
@@ -11,10 +10,8 @@ class LogIn extends React.Component {
       email: '',
       password: '',
       redirect: false,
-      message: '',
       token: '',
       login: false,
-      error: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,13 +27,14 @@ class LogIn extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    this.setState({ login: true });
     const { email, password } = this.state;
-    logIn(this.props.match.url, { email, password })
+    logIn(this.props.path, { email, password })
       .then((res) => {
         this.setState({
           token: res.token,
-          message: res.message,
         });
+        this.props.notification(res.message, res.success);
         this.loggedIn();
       });
   }
@@ -45,10 +43,13 @@ class LogIn extends React.Component {
     const { token } = this.state;
     if (token) {
       this.props.history.push('/user/dashboard');
+    } else {
+      this.setState({ login: false });
     }
   }
 
   render() {
+    const { email, password, login } = this.state;
     return (
       <div id="form-holder">
         <h1>Log In</h1>
@@ -57,16 +58,26 @@ class LogIn extends React.Component {
           <label>
             <div>Email</div>
             <div>
-              <input type="email" value={this.state.email} name="email" onChange={this.handleChange}/>
+              <input type="email" value={ email } name="email" onChange={this.handleChange}/>
             </div>
           </label>
           <label>
             <div>Password</div>
             <div>
-              <input type="password" value={this.state.password} name="password" onChange={this.handleChange}/>
+              <input type="password" value={ password } name="password" onChange={this.handleChange}/>
             </div>
           </label>
-          <button type="submit">Submit</button>
+          <div style={{ position: 'relative' }}>
+            <button type="submit">{login ? 'Logging in' : 'Submit' }</button>
+            { login && <img src="/images/loader.svg"
+              style={{
+                position: 'absolute',
+                top: '20%',
+                left: '65%',
+                width: '30px',
+              }}
+            /> }
+          </div>
         </form>
         <p style={{ fontSize: '16px' }}>
           Don't have an account?
