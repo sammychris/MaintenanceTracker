@@ -8,10 +8,10 @@ function logOut() {
 }
 
 
-const postRequestOptions = (data) => {
+const postRequestOptions = (data) => { // post Options
   return {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', ...authHeader() },
     body: JSON.stringify(data),
   };
 };
@@ -28,7 +28,7 @@ function validateJson(res) {
 }
 
 
-function signUp(url, data) {
+function signUp(url, data) { // Sign Up A User
   return fetch(url, postRequestOptions(data))
     .then(validateJson)
     .then((res) => {
@@ -38,7 +38,7 @@ function signUp(url, data) {
 }
 
 
-function logIn(url, data) {
+function logIn(url, data) { // Login A User
   return fetch(url, postRequestOptions(data))
     .then(validateJson)
     .then((res) => {
@@ -46,13 +46,12 @@ function logIn(url, data) {
         localStorage.setItem('token', res.token);
         localStorage.setItem('user', JSON.stringify(res.user));
       }
-      alert(res.message);
       return res;
     });
 }
 
 
-function getAllRequests(url) {
+function getAllRequests(url) { // Get All Requests
   const { _id } = JSON.parse(localStorage.getItem('user'));
   const requestOptions = {
     method: 'GET',
@@ -63,10 +62,28 @@ function getAllRequests(url) {
 }
 
 
-function postRequest(url, data) {
+function postRequest(url, data) { // Post A Request
   return fetch(url, postRequestOptions(data))
     .then(validateJson);
 }
+
+function updateRequest(url, data) { // Update A Request
+  const requestOptions = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', ...authHeader() },
+    body: JSON.stringify(data),
+  };
+  return fetch(url, requestOptions)
+    .then(validateJson);
+}
+
+// function deleteRequest(url) { // Update A Request
+//   const requestOptions = {
+//     method: 'DELETE',
+//     headers: { 'Content-Type': 'application/json' },
+//   };
+//   return fetch(url, requestOptions);
+// }
 
 export {
   logIn,
@@ -74,4 +91,5 @@ export {
   logOut,
   getAllRequests,
   postRequest,
+  updateRequest,
 };
