@@ -77,13 +77,14 @@ function updateRequest(url, data) { // Update A Request
     .then(validateJson);
 }
 
-// function deleteRequest(url) { // Update A Request
-//   const requestOptions = {
-//     method: 'DELETE',
-//     headers: { 'Content-Type': 'application/json' },
-//   };
-//   return fetch(url, requestOptions);
-// }
+function deleteRequest(url) { // Update A Request
+  const requestOptions = {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json', ...authHeader() },
+  };
+  return fetch(url, requestOptions)
+    .then(validateJson);
+}
 
 export {
   logIn,
@@ -92,4 +93,5 @@ export {
   getAllRequests,
   postRequest,
   updateRequest,
+  deleteRequest,
 };
