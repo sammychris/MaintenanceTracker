@@ -12,7 +12,10 @@ export default {
             .save((err, result) => {
                 if (err) return res.status(404).send(err);
                 channel.publish(result, 'myEvent'); // notifying admin...
-                return res.json({ message: 'Your request has been sent', result });
+                return res.json({
+                    message: 'Your request has been sent',
+                    success: true,
+                });
             });
     },
 
@@ -37,21 +40,23 @@ export default {
         const { requestId } = req.params;
         Request.findById(requestId, (err, result) => {
             if (err) return res.status(401).send(err);
-            return res.json({ result });
+            return res.json({ result, success: true });
         });
     },
 
     modify(req, res) {
+        console.log(req.body);
         const { requestId } = req.params;
-        Request.findById(requestId, (err, result) => {
+        const { type, description, status } = req.body;
+        Request.findById(requestId, (err, data) => {
             if (err) res.send(err);
             /* eslint-disable no-param-reassign */
-            result.type = req.body.type;
-            result.description = req.body.description;
-            result.status = req.body.status;
-            result.save((er, r) => {
+            data.type = type || data.type;
+            data.description = description || data.description;
+            data.status = status || data.status;
+            data.save((er) => {
                 if (er) return res.send(err);
-                return res.json(r);
+                return res.json({ message: 'You request has been updated', success: true });
             });
         });
     },
