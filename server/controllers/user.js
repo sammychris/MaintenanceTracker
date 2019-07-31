@@ -10,7 +10,7 @@ export default {
         // const userSecret = process.env.USER_KEY;
         const { name, email, password } = req.body;
         User.findOne({ email }, (e, result) => {
-            if (result) return res.json({ message: 'user already exist!' });
+            if (result) return res.json({ message: 'user already exist!', success: false });
             // jwt.sign(req.body, userSecret, { expiresIn: '90h' }, (err, token) => {
             // if (err) return res.send(err);
             return new User({ name, email, password }).save((er) => {
@@ -29,8 +29,8 @@ export default {
 
         User.findOne({ email }, (err, user) => {
             if (err) return res.send(err);
-            if (!user) return res.json({ message: 'user does not exist!' });
-            if (user.password !== password) return res.json({ message: 'wrong password' });
+            if (!user) return res.json({ message: 'user does not exist!', success: false });
+            if (user.password !== password) return res.json({ message: 'wrong password', success: false });
             const payload = {
                 id: user._id,
                 name: user.name,
@@ -38,7 +38,12 @@ export default {
             };
             return jwt.sign(payload, scrtKey, { expiresIn: '2 days' }, (er, token) => {
                 if (er) return console.log(er);
-                return res.status(202).json({ message: 'loggedin successfully', token, user });
+                return res.status(202).json({
+                    message: 'loggedin successfully',
+                    token,
+                    user,
+                    success: true,
+                });
             });
         });
     },
