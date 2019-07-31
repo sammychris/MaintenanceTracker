@@ -112,9 +112,9 @@ body {
 			  				display: flex;
 			  				justify-content: space-between;
 			  				align-items: center;
-			  				padding: 16px 10px;
+			  				padding: 15px 10px;
 			  				cursor: pointer;
-			  				color: #505050;
+			  				color: #14171a;
 			  				font-weight: 600;
 
 			  				.data {
@@ -187,9 +187,10 @@ body {
 			  		#req-content {
 			  			font-family: "Segoe UI",Arial,sans-serif;
 			  			overflow-y: auto;
-    					height: 100%;
+    					height: 80%;
     					background: #dbe1e4;
     					padding: 0px 2px;
+    					position: relative;
 
 			  			.reqs {
 			  				display: flex;
@@ -197,7 +198,7 @@ body {
 			  				padding: 5px 10px;
 			  				align-items: center;
 			  				font-weight: bolder;
-			  				color: #444444;
+			  				color: #14171a;
 			  				cursor: pointer;
 			  				margin: 2px 0;
 
