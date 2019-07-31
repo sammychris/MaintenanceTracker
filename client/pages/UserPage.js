@@ -21,35 +21,22 @@ class UserPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: {},
+      user: JSON.parse(localStorage.getItem('user')),
       requests: [],
       pending: [],
       approved: [],
       rejected: [],
       resolved: [],
       showRequests: [],
-      newReq: false,
+      showForm: false,
+      updateReq: false,
+      currentReq: {},
     };
     this.makeNewReq = this.makeNewReq.bind(this);
-    this.newBtnReq = this.newBtnReq.bind(this);
+    this.showReqForm = this.showReqForm.bind(this);
     this.filterRequests = this.filterRequests.bind(this);
-  }
-
-  componentDidMount() {
-    this.setState({
-      user: JSON.parse(localStorage.getItem('user')),
-    });
-    getAllRequests('/user/requests').then((reqs) => {
-      const revReq = reqs.reverse();
-      this.setState({
-        requests: revReq,
-        pending: revReq.filter(e => e.status === 'pending'),
-        approved: revReq.filter(e => e.status === 'approved'),
-        rejected: revReq.filter(e => e.status === 'rejected'),
-        resolved: revReq.filter(e => e.status === 'resolved'),
-        showRequests: revReq,
-      });
-    });
+    this.editRequest = this.editRequest.bind(this);
+    this.deleteRequest = this.deleteRequest.bind(this);
   }
 
   filterRequests(cName) {
@@ -57,17 +44,15 @@ class UserPage extends React.Component {
     this.setState({ showRequests: this.state[cName] });
   }
 
-  newBtnReq() {
-    const { newReq } = this.state;
+  showReqForm() {
+    const { showForm } = this.state;
     const htm = document.getElementsByTagName('html')[0];
-    htm.style.overflowY = newReq ? 'scroll' : 'hidden';
-    this.setState({ newReq: !newReq });
+    htm.style.overflowY = showForm ? 'scroll' : 'hidden';
+    this.setState({ showForm: !showForm, updateReq: false });
   }
 
-  makeNewReq() {
+  componentDidMount() {
     const cName = document.getElementById('active').className;
-    this.newBtnReq();
-
     getAllRequests('/user/requests').then((reqs) => {
       const revReq = reqs.reverse();
       this.setState({
@@ -81,22 +66,57 @@ class UserPage extends React.Component {
     });
   }
 
+  makeNewReq() {
+    const cName = document.getElementById('active').className;
+    getAllRequests('/user/requests').then((reqs) => {
+      const revReq = reqs.reverse();
+      this.setState({
+        requests: revReq,
+        pending: revReq.filter(e => e.status === 'pending'),
+        approved: revReq.filter(e => e.status === 'approved'),
+        rejected: revReq.filter(e => e.status === 'rejected'),
+        resolved: revReq.filter(e => e.status === 'resolved'),
+      });
+      this.filterRequests(cName);
+    });
+    this.showReqForm();
+  }
+
+  editRequest(id, type, description) {
+    return () => {
+      this.showReqForm();
+      this.setState({
+        updateReq: true,
+        currentReq: { id, type, description },
+      });
+    };
+  }
+
+  deleteRequest(id) {
+    return () => {
+      alert(id);
+    };
+  }
+
   render() {
     const {
-      requests, pending, approved, rejected, resolved, showRequests,
+      requests, pending, approved, rejected, resolved,
+      showRequests, showForm, updateReq, currentReq,
     } = this.state;
-
     return (
       <div className="container">
         {
-          this.state.newReq
+          showForm
           && <NewRequestForm // New Request Form Component
+            notification={this.props.notification}
             makeNewReq={this.makeNewReq}
-            newBtnReq={this.newBtnReq}
+            showReqForm={this.showReqForm}
+            updateReq={updateReq}
+            currentReq={currentReq}
           />
         }
         <Header // Header Component
-          newBtnReq={this.newBtnReq}
+          showReqForm={this.showReqForm}
         />
         <main className="contents">
           <div className="content">
@@ -130,7 +150,23 @@ class UserPage extends React.Component {
                   </div>
                 </div>
                 <div id="req-content">
-                  <RequestList requests={ showRequests } /> { /* requests Components */ }
+                  { !requests.length
+                    ? <img
+                      src="/images/loader.svg"
+                      style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        width: '40px',
+                        transform: 'translate(-50%, -50%)',
+                      }}
+                    />
+                    : <RequestList /* requests Components */
+                      requests={ showRequests }
+                      editReq={ this.editRequest }
+                      deleteReq={ this.deleteRequest }
+                    />
+                  }
                 </div>
               </div>
             </div>
