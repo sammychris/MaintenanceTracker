@@ -1,5 +1,5 @@
 import React from 'react';
-import { postRequest } from '../services';
+import { postRequest, updateRequest } from '../services';
 
 const style = {
   position: 'absolute',
@@ -14,8 +14,9 @@ const box = {
   height: '100vh',
   width: '100vw',
   background: '#0000003d',
-  position: 'absolute',
+  position: 'fixed',
   overflow: 'hidden',
+  zIndex: '5',
 };
 
 class NewRequestForm extends React.Component {
@@ -27,17 +28,29 @@ class NewRequestForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.control = this.control.bind(this);
+  }
+
+  control() {
+    const { type, description } = this.state;
+    const update = () => {
+      const { id } = this.props.currentReq;
+      return updateRequest(`/user/requests/${id}`, { type, description });
+    };
+    const create = () => {
+      const { _id } = JSON.parse(localStorage.getItem('user'));
+      return postRequest('/user/requests', { type, description, user: _id });
+    };
+    return this.props.updateReq ? update() : create();
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const { _id } = JSON.parse(localStorage.getItem('user'));
-    const { type, description } = this.state;
-    postRequest('/user/requests', { type, description, user: _id })
+    this.control()
       .then((res) => {
-        console.log(res);
+        this.props.notification(res.message, res.success);
       });
-    this.props.makeNewReq();
+    setTimeout(() => this.props.makeNewReq(), 1000);
   }
 
   handleChange(e) {
@@ -48,16 +61,18 @@ class NewRequestForm extends React.Component {
   }
 
   render() {
+    const { updateReq, currentReq } = this.props;
+    const message = updateReq ? 'Save' : 'Send';
     return (
       <div>
-        <div id="box" style={box} onClick={this.props.newBtnReq}>
+        <div id="box" style={box} onClick={this.props.showReqForm}>
         </div>
         <div id="form-holder" style={style}>
           <form onSubmit={this.handleSubmit}>
             <label>
               <div>What's the type of Request</div>
               <div>
-                <select name="type" onChange={this.handleChange} required>
+                <select name="type" onChange={this.handleChange} required defaultValue={ currentReq.type }>
                   <option value="">Selete an Option</option>
                   <option value="maintenance">Maintenance</option>
                   <option value="repair">Repair</option>
@@ -67,15 +82,16 @@ class NewRequestForm extends React.Component {
             <label>
               <div>Describe your request</div>
               <div>
-                <textarea name="description" onChange={this.handleChange} required></textarea>
+                <textarea name="description" onChange={this.handleChange} required defaultValue={updateReq && currentReq.description}/>
               </div>
             </label>
-            <button type="submit">Send</button>
+            <button type="submit">{ message }</button>
           </form>
         </div>
       </div>
     );
   }
 }
+
 
 export default NewRequestForm;
