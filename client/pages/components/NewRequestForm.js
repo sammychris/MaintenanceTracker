@@ -48,9 +48,10 @@ class NewRequestForm extends React.Component {
     e.preventDefault();
     this.control()
       .then((res) => {
-        this.props.notification(res.message, res.success);
+        this.props.notification(res.message, res.success); // handle the notification message...
       });
-    setTimeout(() => this.props.makeNewReq(), 1000);
+    this.props.showReqForm(); // This turns Off the show request form...
+    this.props.refreshRequests(); // This refreshes the requests after the update
   }
 
   handleChange(e) {

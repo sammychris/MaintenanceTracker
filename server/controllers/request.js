@@ -36,7 +36,7 @@ export default {
         });
     },
 
-    oneRequest(req, res) {
+    getOneRequest(req, res) {
         const { requestId } = req.params;
         Request.findById(requestId, (err, result) => {
             if (err) return res.status(401).send(err);
@@ -44,8 +44,7 @@ export default {
         });
     },
 
-    modify(req, res) {
-        console.log(req.body);
+    modifyOneRequest(req, res) {
         const { requestId } = req.params;
         const { type, description, status } = req.body;
         Request.findById(requestId, (err, data) => {
@@ -57,6 +56,18 @@ export default {
             data.save((er) => {
                 if (er) return res.send(err);
                 return res.json({ message: 'You request has been updated', success: true });
+            });
+        });
+    },
+
+    deleteOneRequest(req, res) {
+        const { requestId } = req.params;
+        Request.findById(requestId, (err, data) => {
+            if (err) res.send(err);
+            /* eslint-disable no-param-reassign */
+            data.deleteOne((er) => {
+                if (er) return res.send(err);
+                return res.json({ message: 'Deleted successfully!', success: true });
             });
         });
     },
