@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import UserPage from './pages/UserPage';
-import { PrivateRoute, PublicRoute } from './pages/components';
+import { PrivateRoute, PublicRoute, PopUpBox } from './pages/components';
 import './styling.scss';
 // import './stylesheet/style.css';
 // import './stylesheet/w3.css';
@@ -14,19 +14,38 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sign: false,
-      users: false,
+      success: false,
+      message: '',
+      display: false,
     };
+    this.notification = this.notification.bind(this);
+  }
+
+  notification(message, success) {
+    this.setState({
+      display: true,
+      message,
+      success,
+    });
+    setTimeout(() => {
+      this.setState({
+        display: false,
+      });
+    }, 5000);
   }
 
   render() {
+    const { display, message, success } = this.state;
     return (
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <PublicRoute path="/auth/login" component={LogIn} />
-        <PublicRoute path="/auth/signup" component={SignUp} />
-        <PrivateRoute path="/user/dashboard" component={UserPage} />
-      </Switch>
+      <div>
+        { display && <PopUpBox message={ message } success={ success }/> }
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <PublicRoute path="/auth/login" Component={LogIn} notification={this.notification}/>
+          <PublicRoute path="/auth/signup" Component={SignUp} notification={this.notification}/>
+          <PrivateRoute path="/user/dashboard" Component={UserPage} notification={this.notification}/>
+        </Switch>
+      </div>
     );
   }
 }

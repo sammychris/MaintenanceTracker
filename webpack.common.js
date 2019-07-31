@@ -30,12 +30,12 @@ module.exports = {
 
     new HtmlWebpackPlugin({template: './public/index.html'}),
 
-    // new CopyWebpackPlugin([
-    // { from: 'client/img/',
-    //   to: 'img',
-    //   toType: 'dir'
-    // }
-    // ], { copyUnmodified: true })
+    new CopyWebpackPlugin([
+    { from: 'client/images/',
+      to: 'images',
+      toType: 'dir'
+    }
+    ], { copyUnmodified: true })
   ],
   output: {
     path: path.join(__dirname, outputDirectory),
