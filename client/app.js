@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import UserPage from './pages/UserPage';
-import { PrivateRoute, PublicRoute, PopUpBox } from './pages/components';
+import { PrivateRoute, PublicRoute, PopUpMessage } from './pages/components';
 import './styling.scss';
 // import './stylesheet/style.css';
 // import './stylesheet/w3.css';
@@ -38,7 +38,7 @@ class App extends React.Component {
     const { display, message, success } = this.state;
     return (
       <div>
-        { display && <PopUpBox message={ message } success={ success }/> }
+        { display && <PopUpMessage message={ message } success={ success }/> }
         <Switch>
           <Route exact path="/" component={HomePage} />
           <PublicRoute path="/auth/login" Component={LogIn} notification={this.notification}/>
