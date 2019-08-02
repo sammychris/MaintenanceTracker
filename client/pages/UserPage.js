@@ -120,10 +120,11 @@ class UserPage extends React.Component {
             currentReq={currentReq}
           />
         }
-        <Header // Header Component
-          showReqForm={this.showReqForm}
-        />
+
         <main className="contents">
+          <Header // Header Component
+            showReqForm={this.showReqForm}
+          />
           <div className="content">
             <AsideNav // Left Navigation Component
               requestsL={requests.length}
