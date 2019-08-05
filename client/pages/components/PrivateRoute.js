@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-
 const PrivateRoute = (props) => {
+  const { Component, path, notification } = props;
   return (localStorage.getItem('user'))
-    ? (<Route path={props.path} component={props.component} />)
+    ? (<Route render={ () => <Component path={path} notification={notification} /> } />)
     : (<Redirect to='/' />);
 };
 

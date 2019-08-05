@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAllRequests, deleteRequest } from './services';
 import {
-  Header, AsideNav, RequestList, NewRequestForm,
+  Header, AsideNav, RequestList, NewRequestForm, ShowRequest,
 } from './components';
 
 const SearchTag = () => {
@@ -27,21 +27,23 @@ class UserPage extends React.Component {
       approved: [],
       rejected: [],
       resolved: [],
-      showRequests: [],
+      showAllRequests: [],
       showForm: false,
       updateReq: false,
+      showOneRequest: false,
       currentReq: {},
     };
     this.refreshRequests = this.refreshRequests.bind(this);
     this.showReqForm = this.showReqForm.bind(this);
     this.filterRequests = this.filterRequests.bind(this);
     this.editRequest = this.editRequest.bind(this);
+    this.showRequest = this.showRequest.bind(this);
     this.deleteReq = this.deleteReq.bind(this);
   }
 
   filterRequests(cName) {
     if (cName === 'profile' || cName === 'message') return;
-    this.setState({ showRequests: this.state[cName] });
+    this.setState({ showAllRequests: this.state[cName] });
   }
 
   showReqForm() {
@@ -81,6 +83,12 @@ class UserPage extends React.Component {
     }), 1000);
   }
 
+  showRequest() {
+    this.setState({
+      showOneRequest: !this.state.showOneRequest,
+    });
+  }
+
   editRequest(id, type, description) {
     return () => {
       this.showReqForm(); // This turns On the show request form....
@@ -106,7 +114,7 @@ class UserPage extends React.Component {
   render() {
     const {
       requests, pending, approved, rejected, resolved,
-      showRequests, showForm, updateReq, currentReq,
+      showAllRequests, showForm, updateReq, currentReq, showOneRequest,
     } = this.state;
     return (
       <div className="container">
@@ -119,6 +127,11 @@ class UserPage extends React.Component {
             updateReq={updateReq}
             currentReq={currentReq}
           />
+        }
+
+        {
+          showOneRequest
+          && <ShowRequest showRequest={this.showRequest}/>
         }
 
         <main className="contents">
@@ -168,8 +181,9 @@ class UserPage extends React.Component {
                       }}
                     />
                     : <RequestList /* requests Components */
-                      requests={ showRequests }
+                      requests={ showAllRequests }
                       editReq={ this.editRequest }
+                      showRequest={ this.showRequest }
                       deleteReq={ this.deleteReq }
                     />
                   }
