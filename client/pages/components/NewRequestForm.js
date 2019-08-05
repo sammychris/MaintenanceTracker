@@ -13,10 +13,11 @@ const style = {
 const box = {
   height: '100vh',
   width: '100vw',
-  background: '#0000003d',
+  background: 'rgba(99, 98, 98, 0.07)',
   position: 'fixed',
   overflow: 'hidden',
   zIndex: '5',
+  top: '0',
 };
 
 class NewRequestForm extends React.Component {
@@ -46,12 +47,13 @@ class NewRequestForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    const { notification, showReqForm, refreshRequests } = this.props;
     this.control()
       .then((res) => {
-        this.props.notification(res.message, res.success); // handle the notification message...
+        notification(res.message, res.success); // handle the notification message...
       });
-    this.props.showReqForm(); // This turns Off the show request form...
-    this.props.refreshRequests(); // This refreshes the requests after the update
+    showReqForm(); // This turns Off the show request form...
+    refreshRequests(); // This refreshes the requests after the update
   }
 
   handleChange(e) {
@@ -63,6 +65,7 @@ class NewRequestForm extends React.Component {
 
   render() {
     const { updateReq, currentReq } = this.props;
+    const { type, description } = currentReq;
     const message = updateReq ? 'Save' : 'Send';
     return (
       <div>
@@ -73,7 +76,7 @@ class NewRequestForm extends React.Component {
             <label>
               <div>What's the type of Request</div>
               <div>
-                <select name="type" onChange={this.handleChange} required defaultValue={ currentReq.type }>
+                <select name="type" onChange={this.handleChange} required defaultValue={ updateReq && type }>
                   <option value="">Selete an Option</option>
                   <option value="maintenance">Maintenance</option>
                   <option value="repair">Repair</option>
@@ -83,7 +86,13 @@ class NewRequestForm extends React.Component {
             <label>
               <div>Describe your request</div>
               <div>
-                <textarea name="description" onChange={this.handleChange} required defaultValue={updateReq && currentReq.description}/>
+                <textarea
+                  placeholder="Write your request here"
+                  name="description"
+                  onChange={this.handleChange}
+                  defaultValue={ updateReq ? description : '' }
+                  required
+                />
               </div>
             </label>
             <button type="submit">{ message }</button>
