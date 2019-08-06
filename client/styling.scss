@@ -4,11 +4,23 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px 0;
 }
 
+@mixin editAnddelete($background) {
+	color: #fff; 
+	background: $background;
+	margin-top: 2px;
+	width: 25px;
+	height: 25px;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 2px;
+	display: flex;
+	justify-content: center;
+}
 body {
 	padding: 0;
 	margin: 0;
 	line-height: 1.5;
-	background: #e6ecf0;
+	background: #4a677a;
 	font-family: "Segoe UI",Arial,sans-serif;
 
 	main {
@@ -172,8 +184,8 @@ body {
 			  		height: 450px;
 			  		color: #505050;
 
-			  		.date { width: 20%; }
-			  		.desc { width: 40%; }
+			  		.date { width: 25%; }
+			  		.desc { width: 35%; }
 			  		.reqid { width: 15%; }
 			  		.statusOption { width: 25%; }
 
@@ -197,6 +209,76 @@ body {
     					padding: 0px 2px;
     					position: relative;
 
+    					.clicked-req {
+    						background: #f2f4f5;
+    						padding: 40px 30px;
+    						margin-top: 2px;
+    						color: #1d1d1d;
+    						position: relative;
+    						z-index: 1;
+    						.close {
+    							position: absolute;
+							    top: 5px;
+							    right: 12px;
+							    font-size: 16px;
+							    cursor: pointer;
+    						}
+    						.close:hover {
+    							font-size: 18px;
+    						}
+    						.header {
+    							display: flex;
+    							justify-content: space-between;
+
+    							.status {
+	    							color: orange;
+	    							fontWeight: bold;
+	    							text-transform: capitalize;
+	    						}
+	    						.time {
+	    							color: #ababab;
+	    							font-style: italic;
+	    						}
+    						}
+    						.request {
+    							.description {
+	    							color: #ababab;
+	    							font-style: italic;
+	    							display: block;
+	    						}
+    							padding-top: 20px;
+    							padding-bottom: 20px;
+    						}
+    						.footer {
+    							display: flex;
+    							justify-content: space-between;
+    							align-items: center;
+    							.left {
+    								display: flex;
+    								flex-direction: column;
+    								.type {
+    									font-style: italic;
+    									color: #ababab;
+    								}
+    								.id {
+    									fontStyle: italic;
+    									color: #ababab;
+    								}
+    							}
+    							.options {
+    								display: flex;
+								    justify-content: space-between;
+								    width: 100px;
+								    align-items: center;
+    								.edit { @include editAnddelete(#baafbe)}
+								    .del { @include editAnddelete(#df5146)}
+								    .edit:hover { color: #024fafcf; }
+								    .del:hover { color: red; }
+    							}
+    						}
+    						
+    					}
+
 			  			.reqs {
 			  				display: flex;
 			  				background: #fff;
@@ -213,10 +295,9 @@ body {
 			  					color: #FF9800;
 
 			  					.status {
-			  						width: 300px;
+			  						width: 60%;
 			  						.text { 
 				  						text-transform: capitalize;
-				  	
 				  					}
 				  					.time {
 				  						color: #b7b7b7;
@@ -225,36 +306,14 @@ body {
 				  					}
 			  					}
 			  					.options {
-			  						font-size: 12px;
+			  						width: 40%;
 								    display: flex;
-								    flex-direction: column;
-								    justify-content: flex-end;
+								    justify-content: space-between;
 								    font-weight: bolder;
+			  						align-items: center;
 
-								    .edit {
-								    	color: #fff;
-								    	cursor: pointer;
-								    	width: 25px;
-								    	height: 25px;
-								    	align-items: center;
-								    	background: #baafbe;
-								    	border-radius: 2px;
-								    	display: flex;
-								    	justify-content: center;
-								    }
-								    .del {
-								    	color: #fff; 
-								    	background: #df5146;
-								    	margin-top: 2px;
-								    	width: 25px;
-								    	height: 25px;
-								    	align-items: center;
-								    	cursor: pointer;
-								    	border-radius: 2px;
-								    	display: flex;
-								    	justify-content: center;
-								    }
-
+								    .edit { @include editAnddelete(#baafbe)}
+								    .del { @include editAnddelete(#df5146)}
 								    .edit:hover { color: #024fafcf; }
 								    .del:hover { color: red; }
 			  					}
@@ -278,7 +337,7 @@ body {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		width: 90%;
+		width: 80%;
 		max-width: 650px;
 		margin: 50px auto;
 		padding-top: 30px;
