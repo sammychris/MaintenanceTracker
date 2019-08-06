@@ -5,7 +5,7 @@ import AsideNav from './AsideNav';
 import RequestList from './RequestList';
 import NewRequestForm from './NewRequestForm';
 import PopUpMessage from './PopUpMessage';
-
+import Profile from './Profile';
 
 export {
   PrivateRoute,
@@ -15,4 +15,5 @@ export {
   RequestList,
   NewRequestForm,
   PopUpMessage,
+  Profile,
 };
