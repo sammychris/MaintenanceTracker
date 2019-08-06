@@ -5,15 +5,7 @@ import AsideNav from './AsideNav';
 import RequestList from './RequestList';
 import NewRequestForm from './NewRequestForm';
 import PopUpMessage from './PopUpMessage';
-import ShowRequest from './ShowRequest';
 
-// export const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => (
-//     localStorage.getItem('user')
-//       ? <Component {...props} />
-//       : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
-//   )} />
-// );
 
 export {
   PrivateRoute,
@@ -23,5 +15,4 @@ export {
   RequestList,
   NewRequestForm,
   PopUpMessage,
-  ShowRequest,
 };
