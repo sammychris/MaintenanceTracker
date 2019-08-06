@@ -20,6 +20,21 @@ const box = {
   top: '0',
 };
 
+const close = {
+  display: 'flex',
+  color: '#ababab',
+  justifyContent: 'flex-end',
+  maxWidth: '750px',
+  width: '90%',
+  fontSize: '30px',
+  position: 'absolute',
+  top: '30%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: '5',
+  cursor: 'pointer',
+};
+
 class NewRequestForm extends React.Component {
   constructor(props) {
     super(props);
@@ -70,6 +85,9 @@ class NewRequestForm extends React.Component {
     return (
       <div>
         <div id="box" style={box} onClick={this.props.showReqForm}>
+          <div style={close} title="close">
+            <i className="fas fa-times"></i>
+          </div>
         </div>
         <div id="form-holder" style={style}>
           <form onSubmit={this.handleSubmit}>
