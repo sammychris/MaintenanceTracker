@@ -8,6 +8,7 @@ const style = {
   transform: 'translate(-50%, -50%)',
   boxShadow: '#00000040 0px 0px 20px 7px',
   zIndex: '5',
+  textAlign: 'center',
 };
 
 const box = {
@@ -28,7 +29,7 @@ const close = {
   width: '90%',
   fontSize: '30px',
   position: 'absolute',
-  top: '30%',
+  top: '25%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   zIndex: '5',
@@ -91,8 +92,8 @@ class NewRequestForm extends React.Component {
         </div>
         <div id="form-holder" style={style}>
           <form onSubmit={this.handleSubmit}>
-            <label>
-              <div>What's the type of Request</div>
+            <div>
+              <label>What's the type of Request:</label>
               <div>
                 <select name="type" onChange={this.handleChange} required defaultValue={ updateReq && type }>
                   <option value="">Selete an Option</option>
@@ -100,11 +101,11 @@ class NewRequestForm extends React.Component {
                   <option value="repair">Repair</option>
                 </select>
               </div>
-            </label>
-            <label>
-              <div>Describe your request</div>
+            </div>
+            <div style={{ margin: '10px 0 10px' }}>
+              <label>Describe your request</label>
               <div>
-                <textarea
+                <textarea style={{ width: '100%', height: '120px', margin: '5px', padding: '5px'}}
                   placeholder="Write your request here"
                   name="description"
                   onChange={this.handleChange}
@@ -112,7 +113,7 @@ class NewRequestForm extends React.Component {
                   required
                 />
               </div>
-            </label>
+            </div>
             <button type="submit">{ message }</button>
           </form>
         </div>
