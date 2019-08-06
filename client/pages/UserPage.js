@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAllRequests, deleteRequest } from './services';
 import {
-  Header, AsideNav, RequestList, NewRequestForm, ShowRequest,
+  Header, AsideNav, RequestList, NewRequestForm,
 } from './components';
 
 const SearchTag = () => {
@@ -30,8 +30,8 @@ class UserPage extends React.Component {
       showAllRequests: [],
       showForm: false,
       updateReq: false,
-      showOneRequest: false,
       currentReq: {},
+      currentIndex: '',
     };
     this.refreshRequests = this.refreshRequests.bind(this);
     this.showReqForm = this.showReqForm.bind(this);
@@ -83,10 +83,13 @@ class UserPage extends React.Component {
     }), 1000);
   }
 
-  showRequest() {
-    this.setState({
-      showOneRequest: !this.state.showOneRequest,
-    });
+  showRequest(currentIndex) {
+    return () => {
+      this.setState({
+        showOneRequest: !this.state.showOneRequest,
+        currentIndex,
+      });
+    };
   }
 
   editRequest(id, type, description) {
@@ -114,7 +117,7 @@ class UserPage extends React.Component {
   render() {
     const {
       requests, pending, approved, rejected, resolved,
-      showAllRequests, showForm, updateReq, currentReq, showOneRequest,
+      showAllRequests, showForm, updateReq, currentReq,
     } = this.state;
     return (
       <div className="container">
@@ -127,11 +130,6 @@ class UserPage extends React.Component {
             updateReq={updateReq}
             currentReq={currentReq}
           />
-        }
-
-        {
-          showOneRequest
-          && <ShowRequest showRequest={this.showRequest}/>
         }
 
         <main className="contents">
@@ -185,6 +183,7 @@ class UserPage extends React.Component {
                       editReq={ this.editRequest }
                       showRequest={ this.showRequest }
                       deleteReq={ this.deleteReq }
+                      currentIndex={ this.state.currentIndex }
                     />
                   }
                 </div>
