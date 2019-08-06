@@ -1,7 +1,7 @@
 import React from 'react';
 import { getAllRequests, deleteRequest } from './services';
 import {
-  Header, AsideNav, RequestList, NewRequestForm,
+  Header, AsideNav, RequestList, NewRequestForm, Profile
 } from './components';
 
 const SearchTag = () => {
@@ -32,6 +32,7 @@ class UserPage extends React.Component {
       updateReq: false,
       currentReq: {},
       currentIndex: '',
+      currentPage: '',
     };
     this.refreshRequests = this.refreshRequests.bind(this);
     this.showReqForm = this.showReqForm.bind(this);
@@ -42,8 +43,14 @@ class UserPage extends React.Component {
   }
 
   filterRequests(cName) {
-    if (cName === 'profile' || cName === 'message') return;
-    this.setState({ showAllRequests: this.state[cName] });
+    if (cName === 'profile' || cName === 'message') {
+      this.setState({ currentPage: cName });
+      return;
+    }
+    this.setState({
+      showAllRequests: this.state[cName],
+      currentPage: '',
+    });
   }
 
   showReqForm() {
@@ -118,6 +125,7 @@ class UserPage extends React.Component {
     const {
       requests, pending, approved, rejected, resolved,
       showAllRequests, showForm, updateReq, currentReq,
+      currentIndex, currentPage,
     } = this.state;
     return (
       <div className="container">
@@ -145,50 +153,55 @@ class UserPage extends React.Component {
               resolvedL={resolved.length}
               filterRequests={this.filterRequests}
             />
-            <div id="main-content">
-              <SearchTag />
-              <div id="requests">
-                <div id="req-header" className="list">
-                  <div className="date">
-                    <i className="fas fa-calendar"></i>
-                    Date
+            {
+              (currentPage === 'profile')
+                ? <Profile />
+                : (currentPage === 'message') ? <div>Message from clients</div>
+                  : <div id="main-content">
+                    <SearchTag />
+                    <div id="requests">
+                      <div id="req-header" className="list">
+                        <div className="date">
+                          <i className="fas fa-calendar"></i>
+                          Date
+                        </div>
+                        <div className="desc">
+                          <i className="fas fa-info-circle"></i>
+                          Description
+                        </div>
+                        <div className="reqid">
+                          <i className="fas fa-passport"></i>
+                          Req Id
+                        </div>
+                        <div className="status">
+                          <i className="fas fa-map-marker-alt"></i>
+                          Status
+                        </div>
+                      </div>
+                      <div id="req-content">
+                        { !requests.length
+                          ? <img
+                            src="/images/loader.svg"
+                            style={{
+                              position: 'absolute',
+                              top: '50%',
+                              left: '50%',
+                              width: '40px',
+                              transform: 'translate(-50%, -50%)',
+                            }}
+                          />
+                          : <RequestList /* requests Components */
+                            requests={ showAllRequests }
+                            editReq={ this.editRequest }
+                            showRequest={ this.showRequest }
+                            deleteReq={ this.deleteReq }
+                            currentIndex={ currentIndex }
+                          />
+                        }
+                      </div>
+                    </div>
                   </div>
-                  <div className="desc">
-                    <i className="fas fa-info-circle"></i>
-                    Description
-                  </div>
-                  <div className="reqid">
-                    <i className="fas fa-passport"></i>
-                    Req Id
-                  </div>
-                  <div className="status">
-                    <i className="fas fa-map-marker-alt"></i>
-                    Status
-                  </div>
-                </div>
-                <div id="req-content">
-                  { !requests.length
-                    ? <img
-                      src="/images/loader.svg"
-                      style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        width: '40px',
-                        transform: 'translate(-50%, -50%)',
-                      }}
-                    />
-                    : <RequestList /* requests Components */
-                      requests={ showAllRequests }
-                      editReq={ this.editRequest }
-                      showRequest={ this.showRequest }
-                      deleteReq={ this.deleteReq }
-                      currentIndex={ this.state.currentIndex }
-                    />
-                  }
-                </div>
-              </div>
-            </div>
+            }
           </div>
         </main>
       </div>
