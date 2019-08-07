@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import UserPage from './pages/UserPage';
+import UserProfile from './pages/UserProfile';
+import UserMessages from './pages/UserMessages';
 import { PrivateRoute, PublicRoute, PopUpMessage } from './pages/components';
 import './styling.scss';
 // import './stylesheet/style.css';
@@ -44,6 +46,8 @@ class App extends React.Component {
           <PublicRoute path="/auth/login" Component={LogIn} notification={this.notification}/>
           <PublicRoute path="/auth/signup" Component={SignUp} notification={this.notification}/>
           <PrivateRoute path="/user/dashboard" Component={UserPage} notification={this.notification}/>
+          <PrivateRoute path="/user/profile" Component={UserProfile} notification={this.notification}/>
+          <PrivateRoute path="/user/messages" Component={UserMessages} notification={this.notification}/>
         </Switch>
       </div>
     );
