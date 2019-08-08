@@ -1,7 +1,11 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { getAllRequests, deleteRequest } from './services';
+import UserProfile from './UserProfile';
+import UserMessages from './UserMessages';
+import UserRequests from './UserRequests';
 import {
-  Header, AsideNav, RequestList, NewRequestForm, Profile
+  Header, AsideNav, RequestList, NewRequestForm, Profile,
 } from './components';
 
 const SearchTag = () => {
@@ -153,6 +157,12 @@ class UserPage extends React.Component {
               resolvedL={resolved.length}
               filterRequests={this.filterRequests}
             />
+
+            <Switch>
+              <Route path="/user/requests" component={UserProfile} notification={this.notification} />
+              <Route path="/user/messages" component={UserMessages} notification={this.notification} />
+              <Route path="/user/profile" Component={UserRequests} notification={this.notification}/>
+            </Switch>
             {
               (currentPage === 'profile')
                 ? <Profile />
