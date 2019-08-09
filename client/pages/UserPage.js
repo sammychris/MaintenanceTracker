@@ -159,7 +159,6 @@ class UserPage extends React.Component {
             />
 
             <Switch>
-              <Route path="/user/requests" component={UserProfile} notification={this.notification} />
               <Route path="/user/messages" component={UserMessages} notification={this.notification} />
               <Route path="/user/profile" Component={UserRequests} notification={this.notification}/>
             </Switch>
