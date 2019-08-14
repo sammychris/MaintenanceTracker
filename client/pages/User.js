@@ -1,22 +1,30 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { getAllRequests, deleteRequest } from './services';
 import UserProfile from './UserProfile';
 import UserMessages from './UserMessages';
 import UserRequests from './UserRequests';
-import {
-  Header, AsideNav, RequestList, NewRequestForm, Profile,
-} from './components';
+import { Header, AsideNav, NewRequestForm } from './components';
 
-const SearchTag = () => {
+const ManageComponents = (props) => {
+  const valid = url => new RegExp(`user/${url}/?$`).test(location.href);
+
+  if (valid('profile')) {
+    return (<UserProfile />);
+  }
+
+  if (valid('messages')) {
+    return (<UserMessages />);
+  }
+
   return (
-    <div id="search">
-      <div id="box">
-        <span>Type:</span>
-        <span className="item">Repair</span>
-        <span className="item">Maintenance</span>
-      </div>
-    </div>
+    <UserRequests
+      requests={ props.requests }
+      editReq={ props.editReq }
+      showRequest={ props.showRequest }
+      deleteReq={ props.deleteReq }
+      currentIndex={ props.currentIndex }
+    />
   );
 };
 
@@ -48,8 +56,13 @@ class UserPage extends React.Component {
 
   filterRequests(cName) {
     if (cName === 'profile' || cName === 'message') {
-      this.setState({ currentPage: cName });
-      return;
+      console.log('redirecting');
+      return <Redirect to='/user/profile' />;
+      // console.log(this.props);
+      // //this.props.history.push('/user/profile');
+      // console.log(location.pathname);
+      // // this.setState({ currentPage: cName });
+      // // return;
     }
     this.setState({
       showAllRequests: this.state[cName],
@@ -133,6 +146,7 @@ class UserPage extends React.Component {
     } = this.state;
     return (
       <div className="container">
+
         {
           showForm
           && <NewRequestForm // New Request Form Component
@@ -157,60 +171,13 @@ class UserPage extends React.Component {
               resolvedL={resolved.length}
               filterRequests={this.filterRequests}
             />
-
-            <Switch>
-              <Route path="/user/messages" component={UserMessages} notification={this.notification} />
-              <Route path="/user/profile" Component={UserRequests} notification={this.notification}/>
-            </Switch>
-            {
-              (currentPage === 'profile')
-                ? <Profile />
-                : (currentPage === 'message') ? <div>Message from clients</div>
-                  : <div id="main-content">
-                    <SearchTag />
-                    <div id="requests">
-                      <div id="req-header" className="list">
-                        <div className="date">
-                          <i className="fas fa-calendar"></i>
-                          Date
-                        </div>
-                        <div className="desc">
-                          <i className="fas fa-info-circle"></i>
-                          Description
-                        </div>
-                        <div className="reqid">
-                          <i className="fas fa-passport"></i>
-                          Req Id
-                        </div>
-                        <div className="status">
-                          <i className="fas fa-map-marker-alt"></i>
-                          Status
-                        </div>
-                      </div>
-                      <div id="req-content">
-                        { !requests.length
-                          ? <img
-                            src="/images/loader.svg"
-                            style={{
-                              position: 'absolute',
-                              top: '50%',
-                              left: '50%',
-                              width: '40px',
-                              transform: 'translate(-50%, -50%)',
-                            }}
-                          />
-                          : <RequestList /* requests Components */
-                            requests={ showAllRequests }
-                            editReq={ this.editRequest }
-                            showRequest={ this.showRequest }
-                            deleteReq={ this.deleteReq }
-                            currentIndex={ currentIndex }
-                          />
-                        }
-                      </div>
-                    </div>
-                  </div>
-            }
+            <ManageComponents
+              requests={ showAllRequests }
+              editReq={ this.editRequest }
+              showRequest={ this.showRequest }
+              deleteReq={ this.deleteReq }
+              currentIndex={ currentIndex }
+            />
           </div>
         </main>
       </div>
