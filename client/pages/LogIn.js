@@ -42,7 +42,8 @@ class LogIn extends React.Component {
   loggedIn() {
     const { token } = this.state;
     if (token) {
-      this.props.history.push('/user/dashboard');
+      console.log('This is not working');
+      // this.props.history.push('/user/dashboard');
     } else {
       this.setState({ login: false });
     }
