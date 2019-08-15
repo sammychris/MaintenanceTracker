@@ -8,7 +8,7 @@ class UserMessages extends React.Component {
 
   render() {
     return (
-      <div>H1 number 4</div>
+      <div>This is the messages sections</div>
     );
   }
 }

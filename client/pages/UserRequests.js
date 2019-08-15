@@ -1,4 +1,5 @@
 import React from 'react';
+import { RequestList } from './components';
 
 const SearchTag = () => {
   return (
@@ -12,12 +13,16 @@ const SearchTag = () => {
   );
 };
 
-class UserMessages extends React.Component {
+class UserRequests extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    const {
+      requests, editReq, showRequest,
+      deleteReq, currentIndex,
+    } = this.props;
     return (
       <div id="main-content">
         <SearchTag />
@@ -53,10 +58,10 @@ class UserMessages extends React.Component {
                 }}
               />
               : <RequestList /* requests Components */
-                requests={ showAllRequests }
-                editReq={ this.editRequest }
-                showRequest={ this.showRequest }
-                deleteReq={ this.deleteReq }
+                requests={ requests }
+                editReq={ editReq }
+                showRequest={ showRequest }
+                deleteReq={ deleteReq }
                 currentIndex={ currentIndex }
               />
             }
@@ -67,4 +72,4 @@ class UserMessages extends React.Component {
   }
 }
 
-export default UserMessages;
+export default UserRequests;
