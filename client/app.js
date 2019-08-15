@@ -3,9 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
-import UserPage from './pages/UserPage';
-import UserProfile from './pages/UserProfile';
-import UserMessages from './pages/UserMessages';
+import User from './pages/User';
 import { PrivateRoute, PublicRoute, PopUpMessage } from './pages/components';
 import './styling.scss';
 // import './stylesheet/style.css';
@@ -37,6 +35,7 @@ class App extends React.Component {
   }
 
   render() {
+  // <PrivateRoute path={/\/user(\/dashboard|\/profile|\/messages)?/} Component={User} notification={this.notification}/>
     const { display, message, success } = this.state;
     return (
       <div>
@@ -45,9 +44,9 @@ class App extends React.Component {
           <Route exact path="/" component={HomePage} />
           <PublicRoute path="/auth/login" Component={LogIn} notification={this.notification}/>
           <PublicRoute path="/auth/signup" Component={SignUp} notification={this.notification}/>
-          <PrivateRoute path="/user/dashboard" Component={UserPage} notification={this.notification}/>
-          <PrivateRoute path="/user/profile" Component={UserProfile} notification={this.notification}/>
-          <PrivateRoute path="/user/messages" Component={UserMessages} notification={this.notification}/>
+          <PrivateRoute path="/user/dashboard" Component={User} notification={this.notification}/>
+          <PrivateRoute path="/user/profile" Component={User} notification={this.notification}/>
+          <PrivateRoute path="/user/messages" Component={User} notification={this.notification}/>
         </Switch>
       </div>
     );

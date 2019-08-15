@@ -55,16 +55,9 @@ class UserPage extends React.Component {
   }
 
   filterRequests(cName) {
-    if (cName === 'profile' || cName === 'message') {
-      console.log('redirecting');
-      return <Redirect to='/user/profile' />;
-      // console.log(this.props);
-      // //this.props.history.push('/user/profile');
-      // console.log(location.pathname);
-      // // this.setState({ currentPage: cName });
-      // // return;
-    }
-    this.setState({
+    if (cName === 'profile') return this.setState({ currentPage: cName });
+    if (cName === 'message') return this.setState({ currentPage: 'messages' });
+    return this.setState({
       showAllRequests: this.state[cName],
       currentPage: '',
     });
@@ -146,7 +139,13 @@ class UserPage extends React.Component {
     } = this.state;
     return (
       <div className="container">
-
+        {
+          currentPage === 'profile'
+            ? <Redirect to='/user/profile' />
+            : currentPage === 'messages'
+              ? <Redirect to='/user/messages' />
+              : <Redirect to='/user/dashboard' />
+        }
         {
           showForm
           && <NewRequestForm // New Request Form Component
