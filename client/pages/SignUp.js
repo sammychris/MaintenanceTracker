@@ -78,6 +78,7 @@ class SignUp extends React.Component {
                 value={this.state.email}
                 name="email"
                 onChange={this.handleChange}
+                placeholder="Eg: example@gmail.com"
                 required
               />
             </div>
@@ -90,18 +91,7 @@ class SignUp extends React.Component {
                 value={this.state.password}
                 name="password"
                 onChange={this.handleChange}
-                required
-              />
-            </div>
-          </label>
-          <label>
-            <div>Confirm Password</div>
-            <div>
-              <input
-                type="password"
-                value={this.state.cpassword}
-                name="cpassword"
-                onChange={this.handleChange}
+                placeholder="Eg: password232kjks"
                 required
               />
             </div>
