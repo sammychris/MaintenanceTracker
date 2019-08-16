@@ -5,9 +5,10 @@ import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import User from './pages/User';
 import { PrivateRoute, PublicRoute, PopUpMessage } from './pages/components';
-import './styling.scss';
+// import './styling.scss';
 // import './stylesheet/style.css';
 // import './stylesheet/w3.css';
+import './stylesheet/App.scss';
 import './fonts';
 
 class App extends React.Component {
