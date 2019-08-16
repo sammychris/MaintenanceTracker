@@ -1,0 +1,42 @@
+#aside-nav {
+	width: 250px;
+
+  	#nav {
+  		font-family: "Segoe UI",Arial,sans-serif;
+  		font-size: 16px;
+
+  		ul {
+  			padding: 0;
+  			#active { 
+  				color: #45c6ff;
+  				background: #cfdcf05e;
+  				border-radius: 2px;
+  			}
+  			li {
+  				display: flex;
+  				justify-content: space-between;
+  				align-items: center;
+  				padding: 15px 10px;
+  				cursor: pointer;
+  				color: #14171a;
+  				font-weight: 600;
+
+  				.data {
+  					padding: 5px 10px;
+  				}
+
+  				.icons {
+  					i {
+  						font-size: 24px;
+  						width: 50px;
+  					}
+				    display: flex;
+				    align-items: center;
+  				}
+  			}
+  			li:hover {
+  				color: #45c6ff;
+  			}
+  		}
+  	}
+}

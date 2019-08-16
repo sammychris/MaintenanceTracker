@@ -1,0 +1,12 @@
+@mixin editAnddelete($background) {
+	color: #fff; 
+	background: $background;
+	margin-top: 2px;
+	width: 25px;
+	height: 25px;
+	align-items: center;
+	cursor: pointer;
+	border-radius: 2px;
+	display: flex;
+	justify-content: center;
+}

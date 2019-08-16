@@ -1,0 +1,36 @@
+.nav-section {
+	width: 50%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	a { text-decoration: none; }
+	
+	#notification {
+		
+	}
+
+	#new-req { background: #e6ecf0; color: #45c6ff;}
+
+	#new-req:hover { color: #fff; background: #45c6ff; }
+
+	.header-nav {
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+		height: 37px;
+		border-radius: 100px;
+		padding: 0px 10px;
+		color: #505050;
+		font-size: 14px;
+		margin: auto 10px;
+
+		i {
+			font-size: 18px;
+			width: 25px;
+		}
+	}
+
+	.header-nav:hover {color: #45c6ff}
+
+}
