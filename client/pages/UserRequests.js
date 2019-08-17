@@ -21,7 +21,7 @@ class UserRequests extends React.Component {
   render() {
     const {
       requests, editReq, showRequest,
-      deleteReq, currentIndex,
+      deleteReq, currentIndex, loading,
     } = this.props;
     return (
       <div id="main-content">
@@ -46,7 +46,7 @@ class UserRequests extends React.Component {
             </div>
           </div>
           <div id="req-content">
-            { !requests.length
+            { !loading
               ? <img
                 src="/images/loader.svg"
                 style={{
@@ -57,13 +57,19 @@ class UserRequests extends React.Component {
                   transform: 'translate(-50%, -50%)',
                 }}
               />
-              : <RequestList /* requests Components */
-                requests={ requests }
-                editReq={ editReq }
-                showRequest={ showRequest }
-                deleteReq={ deleteReq }
-                currentIndex={ currentIndex }
-              />
+              : requests.length
+                ? <RequestList /* requests Components */
+                  requests={ requests }
+                  editReq={ editReq }
+                  showRequest={ showRequest }
+                  deleteReq={ deleteReq }
+                  currentIndex={ currentIndex }
+                />
+                : <div style={{
+                  position: 'absolute',
+                  top: '47%',
+                  left: '35%',
+                }}>No History Request Yet </div>
             }
           </div>
         </div>
