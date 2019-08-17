@@ -32,7 +32,6 @@ function signUp(url, data) { // Sign Up A User
   return fetch(url, postRequestOptions(data))
     .then(validateJson)
     .then((res) => {
-      alert(res.message);
       return res;
     });
 }

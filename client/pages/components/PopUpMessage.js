@@ -11,7 +11,6 @@ const PopUpMessage = (props) => {
     left: '50%',
     transform: 'translate(-50%, 0)',
     borderRadius: '2px',
-    fontWeight: '500',
     padding: '0px 30px',
     boxShadow: '0px 10px 10px 6px #00000030',
     background: success ? '#45c6ff' : '#df5146',
