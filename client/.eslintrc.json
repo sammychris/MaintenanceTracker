@@ -33,6 +33,7 @@
         "no-alert": "off",
         "no-plusplus": "off",
         "no-param-reassign": "off",
+        "no-nested-ternary": "off",
         "class-methods-use-this": "off",
         "arrow-body-style": "off",
         "react/prop-types": "off"
