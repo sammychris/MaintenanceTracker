@@ -10,7 +10,11 @@ const ManageComponents = (props) => {
   const valid = url => new RegExp(`user/${url}/?$`).test(location.href);
 
   if (valid('profile')) {
-    return (<UserProfile />);
+    return (
+      <UserProfile
+        user={ props.user }
+      />
+      );
   }
 
   if (valid('messages')) {
@@ -19,6 +23,7 @@ const ManageComponents = (props) => {
 
   return (
     <UserRequests
+      loading={ props.loading }
       requests={ props.requests }
       editReq={ props.editReq }
       showRequest={ props.showRequest }
@@ -45,6 +50,7 @@ class UserPage extends React.Component {
       currentReq: {},
       currentIndex: '',
       currentPage: '',
+      loading: false,
     };
     this.refreshRequests = this.refreshRequests.bind(this);
     this.showReqForm = this.showReqForm.bind(this);
@@ -75,6 +81,7 @@ class UserPage extends React.Component {
     getAllRequests('/user/requests').then((reqs) => {
       const revReq = reqs.reverse();
       this.setState({
+        loading: true,
         requests: revReq,
         pending: revReq.filter(e => e.status === 'pending'),
         approved: revReq.filter(e => e.status === 'approved'),
@@ -135,7 +142,7 @@ class UserPage extends React.Component {
     const {
       requests, pending, approved, rejected, resolved,
       showAllRequests, showForm, updateReq, currentReq,
-      currentIndex, currentPage,
+      currentIndex, currentPage, loading, user,
     } = this.state;
     return (
       <div className="container">
@@ -171,6 +178,8 @@ class UserPage extends React.Component {
               filterRequests={this.filterRequests}
             />
             <ManageComponents
+              user= { user }
+              loading={ loading }
               requests={ showAllRequests }
               editReq={ this.editRequest }
               showRequest={ this.showRequest }
