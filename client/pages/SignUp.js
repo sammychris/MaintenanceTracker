@@ -1,12 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { signUp } from './services';
-// import PostApi from './middleware/PostApi';
-
-
-// const styling = {
-//   border: '2px solid red',
-// };
 
 
 class SignUp extends React.Component {
@@ -17,18 +11,14 @@ class SignUp extends React.Component {
       name: '',
       email: '',
       password: '',
-      cpassword: '',
       submit: false,
+      redirect: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
   }
-
-  // validateForm() {
-  //   const { name, email, password, cpassword } = this.state;
-  //   return name.length > 0 && email.length > 0 && password.length > 0;
-  // }
 
   handleChange(e) {
     const { name, value } = e.target;
@@ -39,21 +29,33 @@ class SignUp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const {
-      name, email, password, cpassword,
-    } = this.state;
-    signUp(this.props.match.url, { name, email, password })
-      .then((data) => {
-        if (data.success) {
-          this.props.history.push('/auth/login');
-          alert('You can now Login');
+    this.setState({ submit: true });
+    const { name, email, password } = this.state;
+    signUp(this.props.path, { name, email, password })
+      .then((res) => {
+        this.setState({ submit: false });
+        if (res.success) {
+          this.handleRedirect();
+          this.props.notification(res.message, res.success);
+        } else {
+          this.setState({ redirect: false });
+          this.props.notification(res.message, res.success);
         }
       });
   }
 
+  handleRedirect() {
+    setTimeout(() => this.setState({ redirect: true }), 4000);
+    setTimeout(() => {
+      return this.props.notification('You may now login...', true);
+    }, 6000);
+  }
+
   render() {
+    const { submit, redirect } = this.state;
     return (
       <div id="form-holder">
+        { redirect && <Redirect to='/auth/login' /> }
         <h1>Sign Up</h1>
         <p style={{ fontSize: '18px' }}>All fields are required</p>
         <form onSubmit={this.handleSubmit}>
@@ -96,7 +98,17 @@ class SignUp extends React.Component {
               />
             </div>
           </label>
-          <button type="submit"> Submit</button>
+          <div style={{ position: 'relative' }}>
+            <button type="submit">{submit ? 'Signing up' : 'Submit' }</button>
+            { submit && <img src="/images/loader.svg"
+              style={{
+                position: 'absolute',
+                top: '20%',
+                left: '65%',
+                width: '30px',
+              }}
+            /> }
+          </div>
         </form>
         <p style={{ fontSize: '16px' }}>
           Have an account?
