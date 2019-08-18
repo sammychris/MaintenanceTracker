@@ -13,8 +13,8 @@ body {
 }
 
 main {
-	max-width: 1050px;
-	width: 90%;
+	max-width: $desktop;
+	width: $wpercent;
 	margin: 80px auto;
 	background: #FFF;
 	box-shadow: 0 0 20px #00000014;
