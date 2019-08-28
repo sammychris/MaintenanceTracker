@@ -17,8 +17,8 @@ mongoose.connect(process.env.DB, { useNewUrlParser: true });
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, '../dist')));
-app.use('/admin', express.static(path.join(__dirname, '../dist/admin')));
+app.use(express.static(path.join(__dirname, '../public')));
+// app.use('/admin', express.static(path.join(__dirname, '../dist/admin')));
 
 app.use(cors());
 
